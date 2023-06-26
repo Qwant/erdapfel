@@ -1477,9 +1477,6 @@ msgstr "Leggi di più su Wikipedia"
 msgid "Read more on PagesJaunes"
 msgstr "Leggi di più su PagesJaunes"
 
-msgid "Read more on ecotables"
-msgstr "Leggi di più su Écotables"
-
 msgid "Information"
 msgstr "Informazioni"
 
@@ -1729,16 +1726,6 @@ msgstr "alimentazione"
 msgid "repair cafe"
 msgstr ""
 
-msgid "ecotables"
-msgstr "Écotables"
-
-msgid "organic_store"
-msgstr "Tienda ecológica"
-
-msgid "second_hand"
-msgstr "Seconda mano"
-
-msgid "zero_waste"
 msgstr "Rifiuti zero"
 
 msgid "healthcare laboratory"
@@ -1761,3 +1748,96 @@ msgstr "ristorante coreano"
 
 msgid "electrician"
 msgstr "elettricista"
+
+msgid "PagesJaunes"
+msgstr "PagesJaunes"
+
+msgid "New"
+msgstr "Nuovo"
+
+msgid "Read more on ecotables"
+msgstr "Leggi di più su Ecotable"
+
+msgid "ecotables"
+msgstr "Ecotable"
+
+msgid "organic_store"
+msgstr "Negozio biologico"
+
+msgid "second_hand"
+msgstr "Seconda mano"
+
+msgid "zero_waste"
+msgstr "Senza involucri"
+
+msgid "ecotable"
+msgstr "Ecotable"
+
+msgid "Ecotable opening hour source"
+msgstr "Orari forniti da PagesJaunes"
+
+msgid "Ecotable source details"
+msgstr "Ristoranti sostenibili etichettati da Ecotable."
+
+msgid "Ecotable source poi see more"
+msgstr "Ulteriori informazioni"
+
+msgid "Ecotable source poi details"
+msgstr "Ristorante sostenibile etichettato da Ecotable."
+
+msgid "Ecotable from rating"
+msgstr "su Ecotable"
+
+msgid "Ecotable rating 1"
+msgstr "Questa azienda è impegnata sul tema dell'eco-responsabilità, ma deve ancora adattare le sue pratiche."
+
+msgid "Ecotable rating 2"
+msgstr "Questa attività ha già iniziato la sua trasformazione eco-responsabile, con i primi risultati tangibili."
+
+msgid "Ecotable rating 3"
+msgstr "Questa azienda ha le migliori pratiche per la sostenibilità."
+
+msgid "Organic store source details"
+msgstr "Il cibo biologico, oltre a fare bene alla salute, è più rispettoso dell'ambiente e del suolo."
+
+msgid "Organic store source see more"
+msgstr "Ulteriori informazioni"
+
+msgid "Organic store source see more link"
+msgstr "https://www.un.org/en/actnow/food"
+
+msgid "Organic store source poi see more"
+msgstr "Ulteriori informazioni"
+
+msgid "Organic store source poi details"
+msgstr "Il cibo biologico, oltre a fare bene alla salute, è più rispettoso dell'ambiente e del suolo."
+
+msgid "Second hand source details"
+msgstr "Dare una seconda vita agli oggetti per ridurre l'impatto ambientale legato alla loro fabbricazione."
+
+msgid "Second hand source see more"
+msgstr "Ulteriori informazioni"
+
+msgid "Second hand source see more link"
+msgstr "https://www.un.org/en/actnow/ten-actions#recycle"
+
+msgid "Second hand source poi see more"
+msgstr "Ulteriori informazioni"
+
+msgid "Second hand source poi details"
+msgstr "Dare una seconda vita agli oggetti per ridurre l'impatto ambientale legato alla loro fabbricazione."
+
+msgid "Zero waste source details"
+msgstr "Una modalità di vendita che limita i rifiuti e i rifiuti di imballaggio."
+
+msgid "Zero waste source see more"
+msgstr "Ulteriori informazioni"
+
+msgid "Zero waste source see more link"
+msgstr "https://zerowasteeurope.eu/library/packaging-free-shops-in-europe-an-initial-report/"
+
+msgid "Zero waste source poi see more"
+msgstr "Ulteriori informazioni"
+
+msgid "Zero waste source poi details"
+msgstr "Una modalità di vendita che limita i rifiuti e i rifiuti di imballaggio."

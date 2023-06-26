@@ -1409,9 +1409,6 @@ msgstr "Read more on Wikipedia"
 msgid "Read more on PagesJaunes"
 msgstr "Read more on PagesJaunes"
 
-msgid "Read more on ecotables"
-msgstr "Read more on Écotables"
-
 msgid "Information"
 msgstr ""
 
@@ -1613,23 +1610,8 @@ msgstr ""
 msgid "repair cafe"
 msgstr ""
 
-msgid "ecotables"
-msgstr "Écotables"
-
-msgid "organic_store"
-msgstr "Organic store"
-
-msgid "second_hand"
-msgstr "Second hand"
-
-msgid "zero_waste"
-msgstr "Zero waste"
-
 msgid "Eco-responsible restaurants"
 msgstr ""
-
-msgid "Ecotable source details"
-msgstr "Ecotable is a french eco-label who identifies and promotes restaurants with eco-friendly practices."
 
 msgid "Ecotable source see more"
 msgstr "Learn more"
@@ -1666,3 +1648,93 @@ msgstr ""
 
 msgid "electrician"
 msgstr ""
+
+msgid "PagesJaunes"
+msgstr "PagesJaunes"
+
+msgid "Read more on ecotables"
+msgstr "Continue reading on Ecotable"
+
+msgid "ecotables"
+msgstr "Ecotable"
+
+msgid "organic_store"
+msgstr "Organic Shop"
+
+msgid "second_hand"
+msgstr "Second Hand"
+
+msgid "zero_waste"
+msgstr "Zero Waste"
+
+msgid "ecotable"
+msgstr "Ecotable"
+
+msgid "Ecotable opening hour source"
+msgstr "Opening hours provided by PagesJaunes"
+
+msgid "Ecotable source details"
+msgstr "Ecotable is a french eco-label who identifies and promotes restaurants with eco-friendly practices."
+
+msgid "Ecotable source poi see more"
+msgstr "Learn more"
+
+msgid "Ecotable source poi details"
+msgstr "Sustainable restaurant labeled by Ecotable."
+
+msgid "Ecotable from rating"
+msgstr "on Ecotable"
+
+msgid "Ecotable rating 1"
+msgstr "This business is committed to the subject of sustainability, but still need to adapt its operations."
+
+msgid "Ecotable rating 2"
+msgstr "This business has already begun its sustainable transformation, with tangible first results."
+
+msgid "Ecotable rating 3"
+msgstr "This business demonstrates best-in-class sustainability practices."
+
+msgid "Organic store source details"
+msgstr "Organic food, in addition to being good for health, is more respectful of the environment and the soil."
+
+msgid "Organic store source see more"
+msgstr "Learn more"
+
+msgid "Organic store source see more link"
+msgstr "https://www.un.org/en/actnow/food"
+
+msgid "Organic store source poi see more"
+msgstr "Learn more"
+
+msgid "Organic store source poi details"
+msgstr "Organic food, in addition to being good for health, is more respectful of the environment and the soil."
+
+msgid "Second hand source details"
+msgstr "Giving a second life to items reduces the environmental impact of their manufacture."
+
+msgid "Second hand source see more"
+msgstr "Learn more"
+
+msgid "Second hand source see more link"
+msgstr "https://www.un.org/en/actnow/ten-actions#recycle"
+
+msgid "Second hand source poi see more"
+msgstr "Learn more"
+
+msgid "Second hand source poi details"
+msgstr "Giving a second life to items reduces the environmental impact of their manufacture."
+
+msgid "Zero waste source details"
+msgstr "Selling without packaging limits wastage and packaging waste."
+
+msgid "Zero waste source see more"
+msgstr "Learn more"
+
+msgid "Zero waste source see more link"
+msgstr "https://zerowasteeurope.eu/library/packaging-free-shops-in-europe-an-initial-report/"
+
+msgid "Zero waste source poi see more"
+msgstr "Learn more"
+
+msgid "Zero waste source poi details"
+msgstr "Selling without packaging limits wastage and packaging waste."
