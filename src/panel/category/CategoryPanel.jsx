@@ -175,7 +175,7 @@ const CategoryPanel = ({ poiFilters = {}, bbox }) => {
     panelContent = (
       <>
         {isEcoResponsible && (
-          <Flex m="m">
+          <Flex mb="m" mt={!isMobile ? 'm' : undefined} mx="m">
             <EcoResponsiblePanelTopMention category={poiFilters.category} />
           </Flex>
         )}
@@ -223,6 +223,7 @@ const CategoryPanel = ({ poiFilters = {}, bbox }) => {
       className={classnames('category__panel', {
         'panel--pj': dataSource === sources.pagesjaunes,
         'panel--ta': dataSource === sources.tripadvisor,
+        'panel--et': dataSource === sources.ecotables,
       })}
       floatingItemsLeft={[
         isMobile && shouldShowBackToQwant() && <BackToQwantButton key="back-to-qwant" isMobile />,
