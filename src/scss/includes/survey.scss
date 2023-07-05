@@ -1,13 +1,23 @@
-.survey aside {
-  top: 80px;
-  right: 10px;
-  bottom: auto;
-  @media (max-width: 640px) {
-    top: 90px;
-    max-width: none;
-    height: auto;
-    left: 10px;
+.survey {
+  & aside {
+    top: 80px;
     right: 10px;
-    bottom: auto !important;
+    bottom: auto;
+    @media (max-width: 640px) {
+      top: 90px;
+      max-width: none;
+      height: auto;
+      left: 10px;
+      right: 10px;
+      bottom: auto !important;
+    }
+  }
+
+  & a {
+    background-color: var(--green-400);
+
+    &:hover {
+      background-color: var(--green-300);
+    }
   }
 }
