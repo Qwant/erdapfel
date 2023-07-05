@@ -13,7 +13,7 @@ const getEventClientY = event =>
 const SWIPE_THRESHOLD_PX = 50;
 // Pixel threshold from the bottom or top of the viewport to span to min or max
 const MIN_MAX_THRESHOLD_PX = 75;
-const DEFAULT_SIZE = 250;
+const DEFAULT_SIZE = 265;
 const DEFAULT_MINIMIZED_SIZE = 50;
 const FIT_CONTENT_PADDING = 20;
 const TOP_BAR_HEIGHT = 80;
