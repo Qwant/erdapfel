@@ -107,6 +107,21 @@
   }
 }
 
+@each $spacingName, $spacingValue in $spacings {
+  .u-pt-#{$spacingName} {
+    padding-top: $spacingValue;
+  }
+  .u-pb-#{$spacingName} {
+    padding-bottom: $spacingValue;
+  }
+  .u-pr-#{$spacingName} {
+    padding-right: $spacingValue;
+  }
+  .u-pl-#{$spacingName} {
+    padding-left: $spacingValue;
+  }
+}
+
 .u-flex-shrink-0 {
   flex-shrink: 0;
 }

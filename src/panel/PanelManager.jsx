@@ -19,6 +19,7 @@ import { PoiContext } from 'src/libs/poiContext';
 import { getListDescription } from 'src/libs/poiList';
 import poiSubClass from 'src/mapbox/poi_subclass';
 import { isEcoResponsibleCategory } from 'src/libs/eco-responsible';
+import { PanelHeaderHeightContext } from 'src/libs/panelHeaderContext';
 
 function getTopBarAppValue(activePoi, { poiFilters = {}, poi, query } = {}) {
   const currentPoi = poi || activePoi;
@@ -38,6 +39,7 @@ const PanelManager = ({ router }) => {
     options: {},
     panelSize: 'default',
   });
+  const [height, setHeight] = useState(0);
   const [isSuggestOpen, setIsSuggestOpen] = useState(false);
   const [topBarValue, setTopBarValue] = useState('');
   const setPanelSize = useCallback(
@@ -268,16 +270,18 @@ const PanelManager = ({ router }) => {
         onSuggestToggle={setIsSuggestOpen}
         backButtonAction={getTopBarReturnAction()}
       />
-      <PanelContext.Provider value={{ size: panelSize, setSize: setPanelSize }}>
-        {/*
+      <PanelHeaderHeightContext.Provider value={{ height, setHeight }}>
+        <PanelContext.Provider value={{ size: panelSize, setSize: setPanelSize }}>
+          {/*
           The panel container is made hidden using "display: none;" to avoid unnecessary
           mounts and unmounts of the ActivePanel, that would have inappropriate side effects
           on map markers, requests to server, etc.
         */}
-        <div className="panel_container" style={{ display: !isPanelVisible ? 'none' : null }}>
-          <ActivePanel {...options} />
-        </div>
-      </PanelContext.Provider>
+          <div className="panel_container" style={{ display: !isPanelVisible ? 'none' : null }}>
+            <ActivePanel {...options} />
+          </div>
+        </PanelContext.Provider>
+      </PanelHeaderHeightContext.Provider>
       <Survey />
     </div>
   );
