@@ -30,7 +30,6 @@ const Survey = () => {
     <div className="survey">
       {survey && enabled && (
         <Notification
-          variant="green"
           title={survey.person_name}
           titleSecondary={survey.title}
           icon={survey.image}
