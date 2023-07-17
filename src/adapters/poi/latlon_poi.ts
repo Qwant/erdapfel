@@ -1,5 +1,5 @@
 import Poi from './poi';
-import type { LngLat } from 'mapbox-gl';
+import type { LngLat } from 'maplibre-gl';
 
 export default class LatLonPoi extends Poi {
   constructor(lnglat: LngLat, label: string) {

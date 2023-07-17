@@ -51,7 +51,6 @@
     "@babel/preset-react": "^7.9.0",
     "@babel/preset-typescript": "^7.16.7",
     "@babel/runtime": "^7.9.0",
-    "@mapbox/mapbox-gl-rtl-text": "^0.2.3",
     "@storybook/addon-actions": "^6.4.21",
     "@storybook/addon-docs": "^6.4.21",
     "@storybook/addon-essentials": "^6.4.21",
@@ -84,8 +83,7 @@
     "jest-extended": "^0.11.2",
     "json-loader": "0.5.7",
     "lint-staged": "^10.5.4",
-    "mapbox-gl": "^1.13.0",
-    "mapbox-gl-js-mock": "github:Qwant/mapbox-gl-js-mock#72d1f4b",
+    "maplibre-gl": "^2.4.0",
     "postcss-import": "12.0.0",
     "postcss-loader": "^4.2.0",
     "prettier": "^2.2.1",
@@ -111,6 +109,7 @@
     "yaml-loader": "^0.5.0"
   },
   "dependencies": {
+    "@mapbox/mapbox-gl-rtl-text": "^0.2.3",
     "@qwant/map-style-builder": "github:Qwant/map-style-builder#81eebb0",
     "@qwant/qwant-basic-gl-style": "^1.6.1",
     "@qwant/qwant-ponents": "^0.2.8",
@@ -124,7 +123,6 @@
     "@turf/line-slice-along": "^5.1.5",
     "@turf/meta": "^6.0.2",
     "@types/color": "^3.0.3",
-    "@types/mapbox-gl": "^1.13.4",
     "axios": "^0.21.2",
     "bunyan": "^1.8.12",
     "color": "^3.1.2",

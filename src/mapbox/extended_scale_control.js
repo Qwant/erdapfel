@@ -1,4 +1,4 @@
-import { ScaleControl } from 'mapbox-gl--ENV';
+import { ScaleControl } from 'maplibre-gl';
 
 /**
  * Override default control to pass a container
@@ -13,7 +13,7 @@ export default class ExtendedScaleControl extends ScaleControl {
   onAdd(map) {
     this._map = map;
     this._container = document.createElement('div');
-    this._container.className = 'mapboxgl-ctrl mapboxgl-ctrl-scale map_control__scale';
+    this._container.className = 'maplibregl-ctrl maplibregl-ctrl-scale map_control__scale';
 
     this.parentContainer.appendChild(this._container);
 

@@ -1,4 +1,4 @@
-import { Map, Marker, LngLat, setRTLTextPlugin, LngLatBounds } from 'mapbox-gl--ENV';
+import { Map, Marker, LngLat, setRTLTextPlugin, LngLatBounds } from 'maplibre-gl';
 import PoiPopup from './poi_popup';
 import MobileCompassControl from '../mapbox/mobile_compass_control';
 import ExtendedControl from '../mapbox/extended_nav_control';
@@ -306,7 +306,7 @@ Scene.prototype.initMapBox = function ({ locationHash, bbox }) {
   });
 
   listen('mobile_geolocation_button_visibility', visible => {
-    this.mobileButtonVisibility('.mapboxgl-ctrl-geolocate', visible);
+    this.mobileButtonVisibility('.maplibregl-ctrl-geolocate', visible);
   });
 
   listen('mobile_direction_button_visibility', visible => {
@@ -496,7 +496,7 @@ Scene.prototype.moveMobileBottomUI = function (bottom = 0) {
   }
   const uiControls = [
     '.map_control__scale_attribute_container',
-    '.mapboxgl-ctrl-geolocate',
+    '.maplibregl-ctrl-geolocate',
     '.direction_shortcut',
   ];
   uiControls.forEach(uiControl => {
@@ -508,7 +508,7 @@ Scene.prototype.moveMobileGeolocationButton = function (bottom = 0) {
   if (!isMobileDevice() && bottom > 0) {
     return;
   }
-  this.translateUIControl('.mapboxgl-ctrl-geolocate', bottom);
+  this.translateUIControl('.maplibregl-ctrl-geolocate', bottom);
 };
 
 Scene.prototype.mobileButtonVisibility = function (selector, visible) {

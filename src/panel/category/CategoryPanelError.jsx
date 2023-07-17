@@ -5,7 +5,7 @@ import { useI18n } from 'src/hooks';
 
 const geoloc = e => {
   e.preventDefault();
-  document.querySelector('.mapboxgl-ctrl-geolocate').click();
+  document.querySelector('.maplibregl-ctrl-geolocate').click();
 };
 
 const zoomOut = e => {

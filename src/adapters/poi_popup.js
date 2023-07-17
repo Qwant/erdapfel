@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Popup } from 'mapbox-gl--ENV';
+import { Popup } from 'maplibre-gl';
 import ApiPoi from './poi/idunn_poi';
 import { isMobileDevice } from 'src/libs/device';
 import ReactPoiPopup from 'src/components/PoiPopup';
