@@ -20,6 +20,7 @@ import Error from 'src/adapters/error';
 import { fire, listen } from 'src/libs/customEvents';
 import locale from '../mapbox/locale';
 import { setPoiHoverStyle } from 'src/adapters/pois_styles';
+import mapboxgl from 'mapbox-gl';
 
 const baseUrl = nconf.get().system.baseUrl;
 const LONG_TOUCH_DELAY_MS = 500;
@@ -28,6 +29,8 @@ let MOBILE_IDLE_TIMEOUT;
 
 function Scene() {
   this.currentMarker = null;
+  this.currentCameraMarker = null;
+  this.camera = null;
   this.popup = new PoiPopup();
   this.savedLocation = null;
 }
@@ -123,6 +126,7 @@ Scene.prototype.initMapBox = function ({ locationHash, bbox }) {
     'poi-level-1',
     'poi-level-2',
     'poi-level-3',
+    'mapillary-images',
     'poi-level-public-transports-1',
     'poi-level-public-transports-2',
   ];
@@ -155,6 +159,13 @@ Scene.prototype.initMapBox = function ({ locationHash, bbox }) {
       interactiveLayers.forEach(interactiveLayer => {
         setPoiHoverStyle(this.mb, interactiveLayer);
 
+        this.mb.on('click', 'mapillary-images', e => {
+          if (e.features.length > 0) {
+            this.hoveredPoi = e.features[0];
+            this.mb.setFeatureState(this.hoveredPoi, { hover: true });
+          }
+          this.mb.getCanvas().style.cursor = 'pointer';
+        });
         this.mb.on('mouseenter', interactiveLayer, e => {
           if (e.features.length > 0) {
             this.hoveredPoi = e.features[0];
@@ -171,7 +182,9 @@ Scene.prototype.initMapBox = function ({ locationHash, bbox }) {
           this.mb.getCanvas().style.cursor = '';
         });
 
-        this.popup.addListener(interactiveLayer);
+        if (interactiveLayer !== 'mapillary-images') {
+          this.popup.addListener(interactiveLayer);
+        }
       });
     }
 
@@ -194,8 +207,13 @@ Scene.prototype.initMapBox = function ({ locationHash, bbox }) {
       // when clicking on a POI, just trigger the action without delay,
       // as a subsequent double click isn't a problem
       if (pois[0]) {
-        this.clickOnMap(e.lngLat, pois[0]);
-        return;
+        if (pois[0].sourceLayer === 'poi') {
+          this.clickOnMap(e.lngLat, pois[0]);
+          return;
+        } else {
+          fire('set_mapillary_viewer', pois[0]);
+          return;
+        }
       }
       this.clickDelayHandler = setTimeout(() => {
         // for touch UX we have to make sure a double tap zoom hasn't been made in the meantime
@@ -277,12 +295,32 @@ Scene.prototype.initMapBox = function ({ locationHash, bbox }) {
     this.fitMap(item, forceAnimate);
   });
 
+  listen('update_mapillary_visible', isMapillaryLayerVisible => {
+    if (isMapillaryLayerVisible) {
+      this.mb.setLayoutProperty('mapillary-sequence', 'visibility', 'visible');
+      this.mb.setLayoutProperty('mapillary-images', 'visibility', 'visible');
+    } else {
+      this.mb.setLayoutProperty('mapillary-sequence', 'visibility', 'none');
+      this.mb.setLayoutProperty('mapillary-images', 'visibility', 'none');
+      this.currentMarker.remove();
+      this.currentCameraMarker.remove();
+    }
+  });
+
   listen('ensure_poi_visible', (poi, options) => {
     this.ensureMarkerIsVisible(poi, options);
   });
 
   listen('create_poi_marker', poi => {
     this.addMarker(poi);
+  });
+
+  listen('create_mapillary_marker', coord => {
+    this.addMarkerMapillary(coord);
+  });
+
+  listen('change_camera_orientation', pov => {
+    this.updateCameraOrientation(pov);
   });
 
   listen('clean_marker', () => {
@@ -443,6 +481,7 @@ Scene.prototype.addMarker = function (poi) {
 
   if (this.currentMarker !== null) {
     this.currentMarker.remove();
+    this.currentCameraMarker.remove();
   }
 
   const marker = new Marker({ element, anchor: 'bottom', offset: [0, -5] })
@@ -450,6 +489,118 @@ Scene.prototype.addMarker = function (poi) {
     .addTo(this.mb);
   this.currentMarker = marker;
   return marker;
+};
+
+function makeMapboxMarker(options) {
+  const size = `${2 * options.radius}px`;
+  const circle = document.createElement('div');
+  circle.style.border = `3px solid ${options.color}`;
+  circle.style.backgroundColor = 'rgba(255, 255, 255, 0.6)';
+  circle.style.height = `${size}`;
+  circle.style.borderRadius = '50%';
+  circle.style.width = `${size}`;
+  return new mapboxgl.Marker({
+    element: circle,
+    rotationAlignment: 'map',
+  });
+}
+
+Scene.prototype.addMarkerMapillary = function (coord) {
+  const mapillaryMarker = makeMapboxMarker({ radius: 14, color: '#f00' });
+  const camera = makeCamera(30, 60);
+  this.camera = camera;
+  const cameraMarker = new mapboxgl.Marker({
+    color: '#FFFFFF',
+    element: camera,
+    rotationAlignment: 'map',
+  });
+
+  cameraMarker.onclick = function (e) {
+    // click event should not be propagated to the map itself;
+    e.stopPropagation();
+  };
+  mapillaryMarker.onclick = function (e) {
+    // click event should not be propagated to the map itself;
+    e.stopPropagation();
+  };
+
+  if (this.currentMarker !== null) {
+    this.currentMarker.remove();
+  }
+  if (this.currentCameraMarker !== null) {
+    this.currentCameraMarker.remove();
+  }
+
+  const latLng = {
+    lat: coord[1],
+    lng: coord[0],
+  };
+
+  mapillaryMarker.setLngLat(latLng).addTo(this.mb);
+  cameraMarker.setLngLat(latLng).addTo(this.mb);
+  this.currentMarker = mapillaryMarker;
+  this.currentCameraMarker = cameraMarker;
+  return mapillaryMarker;
+};
+
+const DEG2RAD = Math.PI / 180;
+
+function rotateArc(bearing) {
+  return `rotateZ(${bearing}deg)`;
+}
+
+function makeArc(fov) {
+  const radius = 45;
+  const centerX = 50;
+  const centerY = 50;
+
+  const fovRad = DEG2RAD * fov;
+
+  const arcStart = -Math.PI / 2 - fovRad / 2;
+  const arcEnd = arcStart + fovRad;
+
+  const startX = centerX + radius * Math.cos(arcStart);
+  const startY = centerY + radius * Math.sin(arcStart);
+
+  const endX = centerX + radius * Math.cos(arcEnd);
+  const endY = centerY + radius * Math.sin(arcEnd);
+
+  const center = `M ${centerX} ${centerY}`;
+  const line = `L ${startX} ${startY}`;
+  const arc = `A ${radius} ${radius} 0 0 1 ${endX} ${endY}`;
+
+  return `${center} ${line} ${arc} Z`;
+}
+
+function makeCamera(bearing, fov) {
+  const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+
+  path.setAttribute('d', makeArc(fov));
+  path.setAttribute('fill', 'yellow');
+  path.setAttribute('fill-opacity', '0.5');
+  path.setAttribute('stroke', 'black');
+  path.setAttribute('stroke-width', '1');
+  path.setAttribute('stroke-linejoin', 'round');
+
+  const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+  svg.setAttribute('viewBox', '0 0 100 100');
+  svg.appendChild(path);
+
+  svg.style.height = '100%';
+  svg.style.width = '100%';
+  svg.style.transform = rotateArc(bearing);
+
+  const container = document.createElement('div');
+  container.style.height = '200px';
+  container.style.width = '200px';
+  container.appendChild(svg);
+
+  return container;
+}
+
+Scene.prototype.updateCameraOrientation = function (pov) {
+  const svg = this.camera.querySelector('svg');
+  svg.style.transform = rotateArc(pov.bearing);
 };
 
 Scene.prototype.cleanMarker = async function () {

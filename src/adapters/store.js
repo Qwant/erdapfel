@@ -126,3 +126,12 @@ export function getIsOnlyOSM() {
     return false;
   }
 }
+
+export function getIsMapillary() {
+  try {
+    return get('is_mapillary');
+  } catch (e) {
+    Error.sendOnce('store', 'getIsMapillary', 'error checking existing key', e);
+    return false;
+  }
+}

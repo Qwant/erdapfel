@@ -4,6 +4,7 @@ import PanelManager from 'src/panel/PanelManager';
 import { PoiProvider } from 'src/libs/poiContext';
 import { fire } from 'src/libs/customEvents';
 import { useConfig, useDevice } from 'src/hooks';
+import Mapillary from 'src/panel/Mapillary';
 
 const RootComponent = ({ router }) => {
   const { enabled: isBurgerMenuEnabled } = useConfig('burgerMenu');
@@ -25,6 +26,7 @@ const RootComponent = ({ router }) => {
         <PanelManager router={router} />
       </PoiProvider>
       {isBurgerMenuEnabled && <Menu />}
+      <Mapillary />
     </>
   );
 };
