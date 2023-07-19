@@ -97,7 +97,8 @@ export default class ExtendedControl {
         source: 'terrain',
         exaggeration: 1,
       },
-      this.terrainContainer
+      this.terrainContainer,
+      this._map
     );
     this._container.appendChild(this.terrainContainer);
 

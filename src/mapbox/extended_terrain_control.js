@@ -5,9 +5,11 @@ import { TerrainControl } from 'maplibre-gl';
  */
 
 export default class ExtendedTerrainControl extends TerrainControl {
-  constructor(options, container) {
+  constructor(options, container, map) {
     super(options);
     this.parentContainer = container;
+    this.visible = false;
+    this.map = map;
   }
 
   onAdd(map) {
@@ -16,5 +18,16 @@ export default class ExtendedTerrainControl extends TerrainControl {
       this.parentContainer.appendChild(container);
     }
     return this.parentContainer;
+  }
+
+  _toggleTerrain() {
+    if (this.visible) {
+      this.visible = false;
+      this.map.setLayoutProperty('terrain', 'visibility', 'none');
+    } else {
+      this.visible = true;
+      this.map.setLayoutProperty('terrain', 'visibility', 'visible');
+    }
+    super._toggleTerrain();
   }
 }
