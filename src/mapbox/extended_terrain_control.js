@@ -23,10 +23,10 @@ export default class ExtendedTerrainControl extends TerrainControl {
   _toggleTerrain() {
     if (this.visible) {
       this.visible = false;
-      this.map.setLayoutProperty('terrain', 'visibility', 'none');
+      this.map.setLayoutProperty('hills', 'visibility', 'none');
     } else {
       this.visible = true;
-      this.map.setLayoutProperty('terrain', 'visibility', 'visible');
+      this.map.setLayoutProperty('hills', 'visibility', 'visible');
     }
     super._toggleTerrain();
   }

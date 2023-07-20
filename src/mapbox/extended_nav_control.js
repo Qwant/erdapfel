@@ -83,7 +83,7 @@ export default class ExtendedControl {
 
     const terrainControl = new ExtendedTerrainControl(
       {
-        source: 'terrain',
+        source: 'terrainSource',
         exaggeration: 1,
       },
       this.bottomButtonGroup,

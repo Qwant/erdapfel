@@ -126,6 +126,7 @@ Scene.prototype.initMapBox = function ({ locationHash, bbox }) {
     'poi-level-1',
     'poi-level-2',
     'poi-level-3',
+    'terrain',
     'mapillary-images',
     'poi-level-public-transports-1',
     'poi-level-public-transports-2',
