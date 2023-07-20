@@ -1,6 +1,12 @@
 name: Qwant Maps - Docker image
 
-on: [push, pull_request]
+on:
+  push:
+    branches:
+      - 'master'
+      - 'terrain_3d'
+    tags:
+      - 'v*'
 
 env:
   DOCKER_IMAGE_BASENAME: qwantresearch/erdapfel
