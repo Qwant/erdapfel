@@ -81,26 +81,23 @@ export default class ExtendedControl {
       this.bottomButtonGroup.appendChild(this._zoomOutButton);
     });
 
-    this._map.addControl(geolocControl);
+    const terrainControl = new ExtendedTerrainControl(
+      {
+        source: 'terrain',
+        exaggeration: 1,
+      },
+      this.bottomButtonGroup,
+      this._map
+    );
 
+    this._map.addControl(geolocControl);
+    this._map.addControl(terrainControl);
     const _pitchAndRotateCompassArrow = this._pitchAndRotateCompassArrow.bind(this);
 
     _pitchAndRotateCompassArrow();
 
     this._map.on('rotate', _pitchAndRotateCompassArrow);
     this._map.on('pitch', _pitchAndRotateCompassArrow);
-
-    this.terrainContainer = document.createElement('div');
-    this.terrainContainer.className = 'map_control__terrain_container';
-    const terrainControl = new ExtendedTerrainControl(
-      {
-        source: 'terrain',
-        exaggeration: 1,
-      },
-      this.terrainContainer,
-      this._map
-    );
-    this._container.appendChild(this.terrainContainer);
 
     this.scaleAttributionContainer = document.createElement('div');
     this.scaleAttributionContainer.className = 'map_control__scale_attribute_container';
@@ -121,7 +118,6 @@ export default class ExtendedControl {
     this._container.appendChild(this.bottomButtonGroup);
     this._container.appendChild(this.scaleAttributionContainer);
 
-    this._map.addControl(terrainControl, 'bottom-right');
     this._map.addControl(extendedScaleControl, 'bottom-right');
     this._map.addControl(extendedAttributionControl, 'bottom-right');
     return this._container;
