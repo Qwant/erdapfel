@@ -1,6 +1,6 @@
 name: Qwant Maps - CI
 
-on: [push]
+on: [push, pull_request]
 
 jobs:
   Build:
