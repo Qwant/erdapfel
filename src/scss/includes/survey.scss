@@ -16,7 +16,7 @@
   & a {
     background-color: var(--green-400);
 
-    &:hover {
+    &:hover, &:focus {
       background-color: var(--green-300);
     }
   }
