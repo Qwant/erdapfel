@@ -30,7 +30,9 @@ const TopBar = ({ value, setUserInputValue, inputRef, onSuggestToggle, backButto
     isMenuDrawerOpen,
     setMenuDrawerOpen,
     isMapillaryLayerVisible,
+    isMapillaryViewerOpen,
     setMapillaryLayerVisible,
+    setMapillaryViewerOpen,
     isProductsDrawerOpen,
     setProductsDrawerOpen,
     setSearchInputTyping,
@@ -206,6 +208,9 @@ const TopBar = ({ value, setUserInputValue, inputRef, onSuggestToggle, backButto
               })}
               onClick={() => {
                 setMapillaryLayerVisible(!isMapillaryLayerVisible);
+                if (isMapillaryViewerOpen) {
+                  setMapillaryViewerOpen(false);
+                }
               }}
               title={_('Mapillary')}
             >

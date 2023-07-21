@@ -319,8 +319,8 @@ Scene.prototype.initMapBox = function ({ locationHash, bbox }) {
     this.addMarkerMapillary(coord);
   });
 
-  listen('change_camera_orientation', pov => {
-    this.updateCameraOrientation(pov);
+  listen('change_camera_orientation', bearing => {
+    this.updateCameraOrientation(bearing);
   });
 
   listen('clean_marker', () => {
@@ -598,9 +598,9 @@ function makeCamera(bearing, fov) {
   return container;
 }
 
-Scene.prototype.updateCameraOrientation = function (pov) {
+Scene.prototype.updateCameraOrientation = function (bearing) {
   const svg = this.camera.querySelector('svg');
-  svg.style.transform = rotateArc(pov.bearing);
+  svg.style.transform = rotateArc(bearing);
 };
 
 Scene.prototype.cleanMarker = async function () {
