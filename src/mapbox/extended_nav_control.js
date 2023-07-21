@@ -2,6 +2,7 @@ import React from 'react';
 import ExtendedScaleControl from './extended_scale_control';
 import ExtendedAttributionControl from './extended_attribution_control';
 import GeolocControl from './extended_geolocate_control';
+import ExtendedTerrainControl from './extended_terrain_control';
 import Telemetry from 'src/libs/telemetry';
 import { listen, unListen } from '../libs/customEvents';
 import renderStaticReact from 'src/libs/renderStaticReact';
@@ -80,8 +81,17 @@ export default class ExtendedControl {
       this.bottomButtonGroup.appendChild(this._zoomOutButton);
     });
 
-    this._map.addControl(geolocControl);
+    const terrainControl = new ExtendedTerrainControl(
+      {
+        source: 'terrainSource',
+        exaggeration: 1,
+      },
+      this.bottomButtonGroup,
+      this._map
+    );
 
+    this._map.addControl(geolocControl);
+    this._map.addControl(terrainControl);
     const _pitchAndRotateCompassArrow = this._pitchAndRotateCompassArrow.bind(this);
 
     _pitchAndRotateCompassArrow();
@@ -106,8 +116,8 @@ export default class ExtendedControl {
     );
     this._container.appendChild(this.topButtonGroup);
     this._container.appendChild(this.bottomButtonGroup);
-
     this._container.appendChild(this.scaleAttributionContainer);
+
     this._map.addControl(extendedScaleControl, 'bottom-right');
     this._map.addControl(extendedAttributionControl, 'bottom-right');
     return this._container;
