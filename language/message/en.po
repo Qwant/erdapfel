@@ -1738,3 +1738,6 @@ msgstr "Learn more"
 
 msgid "Zero waste source poi details"
 msgstr "Selling without packaging limits wastage and packaging waste."
+
+msgid "cookies_management"
+msgstr "Cookie management"

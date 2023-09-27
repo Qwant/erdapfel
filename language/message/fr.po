@@ -1894,3 +1894,6 @@ msgstr "Vente en vrac"
 
 msgid "ecotable"
 msgstr "Écotable"
+
+msgid "cookies_management"
+msgstr "Gestion des cookies"

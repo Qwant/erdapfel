@@ -3,12 +3,13 @@ import PropTypes from 'prop-types';
 import MenuItem from './MenuItem';
 import Telemetry from 'src/libs/telemetry';
 import { Divider } from 'src/components/ui';
-import { IconHeart, IconHistory, IconEdit, IconBug } from 'src/components/ui/icons';
+import { IconHeart, IconHistory, IconEdit, IconBug, IconCookie } from 'src/components/ui/icons';
 import { IconLight, IconApps } from '@qwant/qwant-ponents';
 import { useConfig, useI18n } from 'src/hooks';
 
 const AppMenu = ({ close, openProducts }) => {
   const { baseUrl } = useConfig('system');
+  const { drawer } = useConfig('telemetry');
   const { getLocalizedUrl, _ } = useI18n();
   const searchHistoryConfig = useConfig('searchHistory');
 
@@ -66,6 +67,13 @@ const AppMenu = ({ close, openProducts }) => {
         icon={<IconBug width={16} fill="var(--green-500)" />}
       >
         {_('Report a bug', 'menu')}
+      </MenuItem>
+      <MenuItem
+        href={drawer.url}
+        outsideLink
+        icon={<IconCookie width={16} fill="var(--green-500)" />}
+      >
+        {_('cookies_management', 'menu')}
       </MenuItem>
 
       {openProducts && (

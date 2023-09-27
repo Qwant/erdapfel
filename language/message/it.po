@@ -1841,3 +1841,6 @@ msgstr "Ulteriori informazioni"
 
 msgid "Zero waste source poi details"
 msgstr "Una modalità di vendita che limita i rifiuti e i rifiuti di imballaggio."
+
+msgid "cookies_management"
+msgstr "Gestione dei cookie"
