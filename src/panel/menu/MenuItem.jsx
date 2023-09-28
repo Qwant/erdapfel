@@ -2,11 +2,12 @@ import React from 'react';
 import { Flex, IconExternalLink } from '@qwant/qwant-ponents';
 import { GREY_SEMI_DARKNESS } from 'src/libs/colors';
 
-const MenuItem = ({ icon, children, href, onClick, outsideLink }) => (
+const MenuItem = ({ icon, children, href, onClick, outsideLink, ...props }) => (
   <a
     className="menu-item"
     href={href || '#'}
     onClick={onClick}
+    {...props}
     {...(outsideLink
       ? {
           rel: 'noopener noreferrer',

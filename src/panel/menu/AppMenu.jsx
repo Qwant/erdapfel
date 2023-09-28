@@ -69,8 +69,12 @@ const AppMenu = ({ close, openProducts }) => {
         {_('Report a bug', 'menu')}
       </MenuItem>
       {drawer && drawer.url && (
-        <MenuItem href={drawer.url} icon={<IconCookie width={16} fill="var(--green-500)" />}>
-          {_('cookies_management', 'menu')}
+        <MenuItem
+          href={drawer.url}
+          target="_self"
+          icon={<IconCookie width={16} fill="var(--green-500)" />}
+        >
+          {_('cookies_management', 'menu')} hello world
         </MenuItem>
       )}
 
