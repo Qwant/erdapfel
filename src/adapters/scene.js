@@ -321,7 +321,6 @@ Scene.prototype.initMapBox = function ({ locationHash, bbox }) {
 Scene.prototype.clickOnMap = function (lngLat, clickedFeature, { longTouch = false } = {}) {
   // Instantiate the place clicked as a PoI
   const poi = clickedFeature ? new MapPoi(clickedFeature) : new LatLonPoi(lngLat);
-
   if (document.querySelector('.directions-open')) {
     // If Direction panel is open, tell it to fill its fields with this PoI
     fire('set_direction_point', poi);

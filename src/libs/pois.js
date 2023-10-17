@@ -9,7 +9,7 @@ export function toUrl(poi) {
   if (poi.id === 'geolocalisation' || poi.type === 'latlon') {
     return `latlon:${poi.latLon.lat.toFixed(5)}:${poi.latLon.lng.toFixed(5)}`;
   }
-  return poi.name ? `${poi.id}@${slug(poi.name)}` : poi.id;
+  return poi.name ? `${poi.qwant_id}@${slug(poi.name)}` : poi.qwant_id;
 }
 
 export function toAbsoluteUrl(poi) {

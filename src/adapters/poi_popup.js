@@ -67,7 +67,10 @@ PoiPopup.prototype.addListener = function (layer) {
 };
 
 PoiPopup.prototype.createOSMPopup = async function (layerPoi, event) {
-  const poi = await ApiPoi.poiApiLoad({ id: layerPoi.properties.global_id }, { simple: true });
+  const poi = await ApiPoi.poiApiLoad(
+    { id: layerPoi.properties.global_id, qwant_id: layerPoi.properties.qwant_id },
+    { simple: true }
+  );
   if (poi) {
     this.showPopup(poi, event);
   }
