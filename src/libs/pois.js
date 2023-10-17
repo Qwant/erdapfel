@@ -36,7 +36,7 @@ export function fromUrl(urlParam) {
   urlData = urlParam.match(/^(.*?)(@(.*))?$/);
   if (urlData) {
     const idunnId = urlData[1];
-    return IdunnPoi.poiApiLoad({ id: idunnId });
+    return IdunnPoi.poiApiLoad({ id: idunnId, qwant_id: idunnId });
   }
   return Promise.reject();
 }
