@@ -1178,6 +1178,8 @@ export interface components {
       type: string;
       /** Id */
       id?: string;
+      /** Qwant Id */
+      qwant_id?: string;
       /** Name */
       name?: string;
       /** Local Name */

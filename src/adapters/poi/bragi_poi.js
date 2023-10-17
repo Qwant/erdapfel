@@ -46,6 +46,7 @@ export default class BragiPoi extends Poi {
 
     super(
       id,
+      id,
       name,
       type,
       {

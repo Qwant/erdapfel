@@ -38,9 +38,9 @@ export async function toggleFavoritePanel(page) {
 
 export async function storePoi(
   page,
-  { id = 'A', title = 'poi', coords = { lat: 43, lng: 2 } } = {}
+  { id = 'A', qwant_id = 'A', title = 'poi', coords = { lat: 43, lng: 2 } } = {}
 ) {
-  const poi = new Poi(id, title, 'poi', coords, '', '');
+  const poi = new Poi(id, qwant_id, title, 'poi', coords, '', '');
   await page.evaluate(
     (storageKey, serializedPoi) => {
       window.localStorage.setItem(storageKey, serializedPoi);

@@ -34,7 +34,15 @@ export default class IdunnPoi extends Poi {
       lng: (rawPoi?.geometry?.coordinates as number[])[0],
     } as TPoi['latLon'];
 
-    super(rawPoi.id, rawPoi.name, rawPoi.type, latLng, rawPoi.class_name, rawPoi.subclass_name);
+    super(
+      rawPoi.id,
+      rawPoi.id,
+      rawPoi.name,
+      rawPoi.type,
+      latLng,
+      rawPoi.class_name,
+      rawPoi.subclass_name
+    );
     this.blocks = rawPoi.blocks;
     this.localName = rawPoi.local_name;
     this.bbox = rawPoi?.geometry?.bbox as [number, number, number, number]; // TODO: Check if there is always a bbox on Idunn Place
@@ -115,11 +123,12 @@ export default class IdunnPoi extends Poi {
   static async poiApiLoad(
     obj: {
       id?: string;
+      qwant_id?: string;
       queryContext?: TQueryContext;
     },
     options: { simple?: boolean } = {}
   ) {
-    const url = `${serviceConfig.idunn.url}/v1/places/${obj.id}`;
+    const url = `${serviceConfig.idunn.url}/v1/places/${obj.qwant_id}`;
     let requestParams = {};
     if (options.simple) {
       requestParams = { verbosity: 'list' };

@@ -9,7 +9,7 @@ export function toUrl(poi) {
   if (poi.id === 'geolocalisation' || poi.type === 'latlon') {
     return `latlon:${poi.latLon.lat.toFixed(5)}:${poi.latLon.lng.toFixed(5)}`;
   }
-  return poi.name ? `${poi.id}@${slug(poi.name)}` : poi.id;
+  return poi.name ? `${poi.qwant_id}@${slug(poi.name)}` : poi.qwant_id;
 }
 
 export function toAbsoluteUrl(poi) {
@@ -36,7 +36,7 @@ export function fromUrl(urlParam) {
   urlData = urlParam.match(/^(.*?)(@(.*))?$/);
   if (urlData) {
     const idunnId = urlData[1];
-    return IdunnPoi.poiApiLoad({ id: idunnId });
+    return IdunnPoi.poiApiLoad({ id: idunnId, qwant_id: idunnId });
   }
   return Promise.reject();
 }

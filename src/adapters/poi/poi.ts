@@ -7,6 +7,7 @@ export const POI_TYPE = 'poi';
 
 export type TPoi = {
   id?: string;
+  qwant_id?: string;
   name?: string;
   type?: string;
   latLon?: LngLat;
@@ -17,6 +18,7 @@ export type TPoi = {
 
 export default class Poi {
   id: TPoi['id'];
+  qwant_id: TPoi['qwant_id'];
   name: TPoi['name'];
   type: TPoi['type'];
   latLon: TPoi['latLon'];
@@ -26,6 +28,7 @@ export default class Poi {
 
   constructor(
     id: TPoi['id'],
+    qwant_id: TPoi['qwant_id'],
     name: TPoi['name'],
     type: TPoi['type'],
     latLon: TPoi['latLon'],
@@ -34,6 +37,7 @@ export default class Poi {
     bbox?: TPoi['bbox']
   ) {
     this.id = id;
+    this.qwant_id = qwant_id;
     this.name = name;
     this.type = type;
     this.latLon = latLon;
@@ -43,7 +47,7 @@ export default class Poi {
   }
 
   static deserialize(raw: TPoi) {
-    const { id, name, type, latLon, className, subClassName, bbox } = raw;
-    return new Poi(id, name, type, latLon, className, subClassName, bbox);
+    const { id, qwant_id, name, type, latLon, className, subClassName, bbox } = raw;
+    return new Poi(id, qwant_id, name, type, latLon, className, subClassName, bbox);
   }
 }

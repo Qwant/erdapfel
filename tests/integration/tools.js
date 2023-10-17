@@ -63,6 +63,7 @@ export async function simulateClickOnMapPoi(page, poi) {
   const mapPoiMock = {
     properties: {
       global_id: poi.id,
+      qwant_id: poi.id,
       name: poi.name,
     },
     geometry: poi.geometry,
