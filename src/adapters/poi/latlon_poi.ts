@@ -14,7 +14,7 @@ export default class LatLonPoi extends Poi {
     if (!label) {
       label = `${lnglat.lat.toFixed(5)} : ${lnglat.lng.toFixed(5)}`;
     }
-    super(id, undefined, label, undefined, lnglat, undefined, undefined);
+    super(id, id, label, undefined, lnglat, undefined, undefined);
     this.type = 'latlon';
   }
 }
