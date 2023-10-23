@@ -1768,10 +1768,10 @@ msgid "ecotables"
 msgstr "Ecotable"
 
 msgid "second_hand"
-msgstr "Second-Hand""
+msgstr "Second Hand"
 
 msgid "zero_waste"
-msgstr "Ohne Wrapper"
+msgstr "Verpackungsfrei"
 
 msgid "ecotable"
 msgstr "Ecotable"
