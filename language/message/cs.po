@@ -1,0 +1,1785 @@
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Maps\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-07-12 11:54+0200\n"
+"PO-Revision-Date: 2023-11-05 20:40+0100\n"
+"Last-Translator: Jonáš Loskot <jonas.loskot@protonmail.com>\n"
+"Language-Team: Qwant\n"
+"Language: cs\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n>=2 && n<=4 ? 1 : 2);\n"
+"X-Generator: Poedit 3.3.2\n"
+"X-Poedit-Basepath: ../..\n"
+"X-Poedit-KeywordsList: ;_;_n:1,2\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-Flags-xgettext: --no-location\n"
+"X-Poedit-SearchPath-0: src\n"
+"X-Poedit-SearchPath-1: views\n"
+"X-Poedit-SearchPath-2: public/build/javascript\n"
+"X-Poedit-SearchPath-3: config\n"
+
+msgid "restaurant"
+msgstr "restaurace"
+
+msgid "hotel"
+msgstr "hotel"
+
+msgid "supermarket"
+msgstr "supermarket"
+
+msgid "bar"
+msgstr "bar"
+
+msgid "pharmacy"
+msgstr "lékárna"
+
+msgid "leisure"
+msgstr "volný čas"
+
+msgid "administration"
+msgstr "správa"
+
+msgid "health"
+msgstr "zdraví"
+
+msgid "education"
+msgstr "vzdělávání"
+
+msgid "bank"
+msgstr "banka"
+
+msgid "museum"
+msgstr "muzeum"
+
+msgid "sport"
+msgstr "sport"
+
+msgid "service"
+msgstr "služby"
+
+msgid "french restaurant"
+msgstr "francouzská restaurace"
+
+msgid "pizzeria"
+msgstr "pizzerie"
+
+msgid "burgers"
+msgstr "hamburgery"
+
+msgid "italian restaurant"
+msgstr "italská restaurace"
+
+msgid "kebab restaurant"
+msgstr "restaurace s kebabem"
+
+msgid "sandwich"
+msgstr "sandwiche"
+
+msgid "asian restaurant"
+msgstr "asijská restaurace"
+
+msgid "japanese restaurant"
+msgstr "japonská restaurace"
+
+msgid "chinese restaurant"
+msgstr "čínská restaurace"
+
+msgid "creperie"
+msgstr "palačinkárna"
+
+msgid "indian restaurant"
+msgstr "indická restaurace"
+
+msgid "thai restaurant"
+msgstr "thajská restaurace"
+
+msgid "lebanese restaurant"
+msgstr "libanonská restaurace"
+
+msgid "parking lot"
+msgstr "parkoviště"
+
+msgid "pitch"
+msgstr "hřiště"
+
+msgid "place of worship"
+msgstr "místo uctívání"
+
+msgid "recycling"
+msgstr "recyklace"
+
+msgid "bicycle parking"
+msgstr "parkování jízdních kol"
+
+msgid "school"
+msgstr "škola"
+
+msgid "park"
+msgstr "park"
+
+msgid "bakery"
+msgstr "pekárna"
+
+msgid "clothes shop"
+msgstr "obchod s oblečením"
+
+msgid "toilets"
+msgstr "toalety"
+
+msgid "sports centre"
+msgstr "sportovní centrum"
+
+msgid "hairdresser"
+msgstr "kadeřnictví"
+
+msgid "fast food"
+msgstr "rychlé občerstvení"
+
+msgid "historical place"
+msgstr "historické místo"
+
+msgid "post office"
+msgstr "pošta"
+
+msgid "fuel station"
+msgstr "čerpací stanice"
+
+msgid "community centre"
+msgstr "komunitní centrum"
+
+msgid "convenience store"
+msgstr "obchod se smíšeným zbožím"
+
+msgid "car shop"
+msgstr "prodejna automobilů"
+
+msgid "kindergarten or preschool"
+msgstr "školka"
+
+msgid "camp site"
+msgstr "tábořiště"
+
+msgid "train station"
+msgstr "vlaková stanice"
+
+msgid "butcher"
+msgstr "řezník"
+
+msgid "tourist attraction"
+msgstr "turistická atrakce"
+
+msgid "hospital"
+msgstr "nemocnice"
+
+msgid "doctors office"
+msgstr "ordinace"
+
+msgid "dentist"
+msgstr "zubař"
+
+msgid "physiotherapist"
+msgstr "fyzioterapeut"
+
+msgid "psychotherapist"
+msgstr "psychoterapeut"
+
+msgid "library"
+msgstr "knihovna"
+
+msgid "police"
+msgstr "policie"
+
+msgid "optician"
+msgstr "oční optik"
+
+msgid "graveyard"
+msgstr "hřbitov"
+
+msgid "beauty salon"
+msgstr "kosmetický salon"
+
+msgid "beekeeper"
+msgstr "včelař"
+
+msgid "florist"
+msgstr "květinářství"
+
+msgid "fire station"
+msgstr "požární stanice"
+
+msgid "shoes shop"
+msgstr "prodejna obuvi"
+
+msgid "DIY store"
+msgstr "obchod pro kutily"
+
+msgid "bicycle rental"
+msgstr "půjčovna kol"
+
+msgid "jewelry shop"
+msgstr "klenotnictví"
+
+msgid "newsagent"
+msgstr "trafika"
+
+msgid "swimming pool"
+msgstr "bazén"
+
+msgid "furniture shop"
+msgstr "prodejna nábytku"
+
+msgid "bookshop"
+msgstr "knihkupectví"
+
+msgid "laundry"
+msgstr "prádelna"
+
+msgid "sports shop"
+msgstr "sportovní obchod"
+
+msgid "theatre"
+msgstr "divadlo"
+
+msgid "veterinarian"
+msgstr "veterinář"
+
+msgid "greengrocer"
+msgstr "zelinář"
+
+msgid "garden centre"
+msgstr "zahradnické centrum"
+
+msgid "arts centre"
+msgstr "umělecké centrum"
+
+msgid "electronics shop"
+msgstr "prodejna elektroniky"
+
+msgid "cinema"
+msgstr "kino"
+
+msgid "university"
+msgstr "univerzita"
+
+msgid "travel agency"
+msgstr "cestovní agentura"
+
+msgid "post box"
+msgstr "poštovní schránka"
+
+msgid "playground"
+msgstr "dětské hřiště"
+
+msgid "marketplace"
+msgstr "tržiště"
+
+msgid "confectionery"
+msgstr "cukrářství"
+
+msgid "locksmith"
+msgstr "zámečník"
+
+msgid "shoemaker"
+msgstr "obuvník"
+
+msgid "liquor store"
+msgstr "obchod s alkoholem"
+
+msgid "Delicatessen"
+msgstr "lahůdkářství"
+
+msgid "frozen food shop"
+msgstr "obchod s mraženými potravinami"
+
+msgid "ice-cream shop"
+msgstr "zmrzlinářství"
+
+msgid "fishmonger"
+msgstr "prodejna ryb"
+
+msgid "baby goods shop"
+msgstr "obchod s kojeneckým zbožím"
+
+msgid "tattoo artist"
+msgstr "tatér"
+
+msgid "sex shop"
+msgstr "sexshop"
+
+msgid "watches shop"
+msgstr "prodejna hodinek"
+
+msgid "discount shop"
+msgstr "slevový obchod"
+
+msgid "well being shop"
+msgstr "well being shop"
+
+msgid "DIY clothes shop"
+msgstr "obchod s DIY oblečením"
+
+msgid "medical supply shop"
+msgstr "prodejna zdravotnických potřeb"
+
+msgid "furnitures shop"
+msgstr "prodejna nábytku"
+
+msgid "outdoor activities shop"
+msgstr "obchod pro outdoorové aktivity"
+
+msgid "vehicules shop"
+msgstr "prodejna vozidel"
+
+msgid "boat shop"
+msgstr "prodejna lodí"
+
+msgid "hobbies shop"
+msgstr "obchod s hobby potřebami"
+
+msgid "souvenir shop"
+msgstr "obchod se suvenýry"
+
+msgid "e-cigarette shop"
+msgstr "obchod s e-cigaretami"
+
+msgid "dry cleaner"
+msgstr "čistírna oděvů"
+
+msgid "retirement home"
+msgstr "domov pro seniory"
+
+msgid "ticketing"
+msgstr "prodej vstupenek"
+
+msgid "coworking"
+msgstr "coworking"
+
+msgid "soccer pitch"
+msgstr "fotbalové hřiště"
+
+msgid "boules pitch"
+msgstr "hřiště na boules"
+
+msgid "basketball pitch"
+msgstr "basketbalové hřiště"
+
+msgid "rugby pitch"
+msgstr "hřiště pro ragby"
+
+msgid "tennis pitch"
+msgstr "tenisový kurt"
+
+msgid "skateboard pitch"
+msgstr "skateboardové hřiště"
+
+msgid "table tennis pitch"
+msgstr "hřiště na stolní tenis"
+
+msgid "equestrian pitch"
+msgstr "jezdecké hřiště"
+
+msgid "running track"
+msgstr "běžecká dráha"
+
+msgid "sports hall"
+msgstr "sportovní hala"
+
+msgid "climbing"
+msgstr "lezení"
+
+msgid "martial art"
+msgstr "bojová umění"
+
+msgid "badminton"
+msgstr "badminton"
+
+msgid "baseball"
+msgstr "baseball"
+
+msgid "beach-volley"
+msgstr "plážový volejbal"
+
+msgid "golf"
+msgstr "golf"
+
+msgid "handball"
+msgstr "házená"
+
+msgid "ice skating"
+msgstr "bruslení"
+
+msgid "karting"
+msgstr "motokáry"
+
+msgid "car circuit"
+msgstr "automobilový okruh"
+
+msgid "skiing"
+msgstr "lyžování"
+
+msgid "volleyball"
+msgstr "volejbal"
+
+msgid "sailing"
+msgstr "jachting"
+
+msgid "stadium"
+msgstr "stadion"
+
+msgid "viewpoint"
+msgstr "vyhlídka"
+
+msgid "charging station"
+msgstr "nabíjecí stanice"
+
+msgid "osteopathy"
+msgstr "osteopatie"
+
+msgid "accessories shop"
+msgstr "obchod s příslušenstvím"
+
+msgid "airport"
+msgstr "letiště"
+
+msgid "alpine hut"
+msgstr "alpská chata"
+
+msgid "antiques shop"
+msgstr "obchod se starožitnostmi"
+
+msgid "aquarium"
+msgstr "akvárium"
+
+msgid "archery"
+msgstr "lukostřelba"
+
+msgid "art shop"
+msgstr "obchod s uměním"
+
+msgid "athletics"
+msgstr "atletika"
+
+msgid "ATM"
+msgstr "bankomat"
+
+msgid "attraction"
+msgstr "atrakce"
+
+msgid "bag shop"
+msgstr "obchod s kabelkami"
+
+msgid "basin"
+msgstr "povodí"
+
+msgid "basketball"
+msgstr "basketbal"
+
+msgid "bbq"
+msgstr "grilování"
+
+msgid "bed shop"
+msgstr "obchod s potelemi"
+
+msgid "bed and breakfast"
+msgstr "nocleh se snídaní"
+
+msgid "beverages shop"
+msgstr "obchod s nápoji"
+
+msgid "bicycle shop"
+msgstr "obchod s jízdními koly"
+
+msgid "biergarten"
+msgstr "pivnice"
+
+msgid "billiards"
+msgstr "kulečníky"
+
+msgid "bleachers"
+msgstr "tribuna"
+
+msgid "bmx"
+msgstr "bmx"
+
+msgid "books shop"
+msgstr "knihkupectví"
+
+msgid "border control"
+msgstr "hraniční kontrola"
+
+msgid "boules"
+msgstr "boules"
+
+msgid "boutique"
+msgstr "butik"
+
+msgid "bowls"
+msgstr "mísy"
+
+msgid "brewery"
+msgstr "pivovar"
+
+msgid "brownfield"
+msgstr "brownfield"
+
+msgid "buddhist"
+msgstr "buddhistická stavba"
+
+msgid "bus station"
+msgstr "autobusové nádraží"
+
+msgid "bus stop"
+msgstr "autobusová zastávka"
+
+msgid "cafe"
+msgstr "kavárna"
+
+msgid "canoe"
+msgstr "kánoe"
+
+msgid "car parts shop"
+msgstr "obchod s autodíly"
+
+msgid "car repair"
+msgstr "autoservis"
+
+msgid "car rental"
+msgstr "půjčovna aut"
+
+msgid "car wash station"
+msgstr "mycí stanice"
+
+msgid "caravan site"
+msgstr "kemp pro karavany"
+
+msgid "carpenter"
+msgstr "tesař"
+
+msgid "carpet shop"
+msgstr "obchod s koberci"
+
+msgid "castle"
+msgstr "hrad"
+
+msgid "catering"
+msgstr "stravování"
+
+msgid "cemetery"
+msgstr "hřbitov"
+
+msgid "holiday cottage"
+msgstr "rekreační chata"
+
+msgid "charity store"
+msgstr "charitativní obchod"
+
+msgid "chemist"
+msgstr "lékárna"
+
+msgid "cheese shop"
+msgstr "prodejna sýrů"
+
+msgid "chess"
+msgstr "šachy"
+
+msgid "childcare centre"
+msgstr "centrum péče o děti"
+
+msgid "chocolate shop"
+msgstr "obchod s čokoládou"
+
+msgid "climbing adventure"
+msgstr "horolezecké dobrodružství"
+
+msgid "clinic"
+msgstr "klinika"
+
+msgid "coffee shop"
+msgstr "obchod s kávou"
+
+msgid "college"
+msgstr "vysoká škola"
+
+msgid "computer shop"
+msgstr "obchod s počítači"
+
+msgid "confectionery shop"
+msgstr "cukrárna"
+
+msgid "recycling container"
+msgstr "recyklační kontejner"
+
+msgid "copyshop"
+msgstr "copyshop"
+
+msgid "cosmetics shop"
+msgstr "obchod s kosmetikou"
+
+msgid "courthouse"
+msgstr "soud"
+
+msgid "coworking space"
+msgstr "coworkingový prostor"
+
+msgid "cricket"
+msgstr "kriket"
+
+msgid "cycling"
+msgstr "cyklistika"
+
+msgid "deli"
+msgstr "lahůdkářství"
+
+msgid "department store"
+msgstr "obchodní dům"
+
+msgid "disc golf course"
+msgstr "discgolfové hřiště"
+
+msgid "dock"
+msgstr "dok"
+
+msgid "dog park"
+msgstr "park pro psy"
+
+msgid "dog toilet"
+msgstr "psí toaleta"
+
+msgid "dog racing"
+msgstr "psí závody"
+
+msgid "doityourself store"
+msgstr "obchod pro kutily"
+
+msgid "driving school"
+msgstr "autoškola"
+
+msgid "dry cleaning"
+msgstr "chemické čištění"
+
+msgid "embassy"
+msgstr "ambasáda"
+
+msgid "equestrian"
+msgstr "jezdectví"
+
+msgid "erotic shop"
+msgstr "obchod s erotickými pomůckami"
+
+msgid "escape game"
+msgstr "úniková hra"
+
+msgid "estate agent"
+msgstr "realitní makléř"
+
+msgid "fabric"
+msgstr "továrna"
+
+msgid "farm shop"
+msgstr "farmářský obchod"
+
+msgid "fitness centre"
+msgstr "fitness centrum"
+
+msgid "fitness station"
+msgstr "fitness stanice"
+
+msgid "food court"
+msgstr "stravovací zařízení"
+
+msgid "free flying"
+msgstr "volné létání"
+
+msgid "frozen food"
+msgstr "mražené potraviny"
+
+msgid "funeral home"
+msgstr "pohřební služba"
+
+msgid "gallery"
+msgstr "galerie"
+
+msgid "garden"
+msgstr "zahrada"
+
+msgid "general store"
+msgstr "obchod se smíšeným zbožím"
+
+msgid "gift shop"
+msgstr "obchod se suvenýry"
+
+msgid "golf course"
+msgstr "golfové hřiště"
+
+msgid "grave yard"
+msgstr "hřbitov"
+
+msgid "guest house"
+msgstr "penzion"
+
+msgid "gymnastics"
+msgstr "gymnastika"
+
+msgid "hackerspace"
+msgstr "hackerspace"
+
+msgid "halt"
+msgstr "halt"
+
+msgid "hardware shop"
+msgstr "železářství"
+
+msgid "hearing aids shop"
+msgstr "obchod s naslouchátky"
+
+msgid "hifi shop"
+msgstr "hifi obchod"
+
+msgid "horse racing"
+msgstr "dostihy"
+
+msgid "hostel"
+msgstr "hostel"
+
+msgid "houseware shop"
+msgstr "obchod s domácími potřebami"
+
+msgid "ice cream"
+msgstr "zmrzlina"
+
+msgid "ice rink"
+msgstr "kluziště"
+
+msgid "interior decoration shop"
+msgstr "obchod s dekoracemi interiérů"
+
+msgid "kiosk"
+msgstr "kiosek"
+
+msgid "kitchen manufacturer"
+msgstr "výrobce kuchyní"
+
+msgid "lamps shop"
+msgstr "prodejna svítidel"
+
+msgid "left luggage"
+msgstr "ponechaná zavazadla"
+
+msgid "long jump"
+msgstr "skok daleký"
+
+msgid "mall"
+msgstr "nákupní středisko"
+
+msgid "marina"
+msgstr "přístav"
+
+msgid "massage shop"
+msgstr "masážní salón"
+
+msgid "miniature golf"
+msgstr "minigolf"
+
+msgid "mobile phone shop"
+msgstr "obchod s mobilními telefony"
+
+msgid "model aerodrome"
+msgstr "modelové letiště"
+
+msgid "monument"
+msgstr "památka"
+
+msgid "motel"
+msgstr "motel"
+
+msgid "motocross"
+msgstr "motokros"
+
+msgid "motor"
+msgstr "motor"
+
+msgid "motorcycle shop"
+msgstr "obchod s motocykly"
+
+msgid "motorcycle parking"
+msgstr "parkoviště pro motocykly"
+
+msgid "multi"
+msgstr "multi"
+
+msgid "music shop"
+msgstr "obchod s hudbou"
+
+msgid "music school"
+msgstr "hudební škola"
+
+msgid "musical instrument shop"
+msgstr "obchod s hudebními nástroji"
+
+msgid "newsagent shop"
+msgstr "obchod s novinami"
+
+msgid "nightclub"
+msgstr "noční klub"
+
+msgid "nursing home"
+msgstr "domov pro seniory"
+
+msgid "orienteering"
+msgstr "orientační běh"
+
+msgid "outdoor"
+msgstr "venkovní oblast"
+
+msgid "paddle"
+msgstr "pádlo"
+
+msgid "paragliding"
+msgstr "paragliding"
+
+msgid "car park"
+msgstr "parkoviště"
+
+msgid "pastry shop"
+msgstr "cukrárna"
+
+msgid "perfumery"
+msgstr "parfumerie"
+
+msgid "pet store"
+msgstr "zverimex"
+
+msgid "photo shop"
+msgstr "obchod s fotografiemi"
+
+msgid "picnic site"
+msgstr "místo pro piknik"
+
+msgid "plumber"
+msgstr "instalatér"
+
+msgid "polling station"
+msgstr "volební místnost"
+
+msgid "parcel pickup"
+msgstr "vyzvednutí balíku"
+
+msgid "prison"
+msgstr "věznice"
+
+msgid "pub"
+msgstr "hospoda"
+
+msgid "public building"
+msgstr "veřejná budova"
+
+msgid "public bookcase"
+msgstr "veřejná knihovna"
+
+msgid "public transport station"
+msgstr "zastávka hromadné dopravy"
+
+msgid "rc car"
+msgstr "rc auto"
+
+msgid "reservoir"
+msgstr "nádrž"
+
+msgid "rowing"
+msgstr "veslování"
+
+msgid "ruins"
+msgstr "zřícenina"
+
+msgid "running"
+msgstr "běh"
+
+msgid "scuba diving"
+msgstr "potápění"
+
+msgid "resale shop"
+msgstr "obchod pro další prodej"
+
+msgid "shelter"
+msgstr "přístřešek"
+
+msgid "shoes"
+msgstr "prodejna obuvi"
+
+msgid "shooting"
+msgstr "střelnice"
+
+msgid "shower"
+msgstr "sprcha"
+
+msgid "skateboard"
+msgstr "skateboard"
+
+msgid "skating"
+msgstr "bruslení"
+
+msgid "soccer"
+msgstr "fotbal"
+
+msgid "station"
+msgstr "stanice"
+
+msgid "stationery shop"
+msgstr "papírnictví"
+
+msgid "subway"
+msgstr "metro"
+
+msgid "swimming area"
+msgstr "plavecký areál"
+
+msgid "swimming pool equipment"
+msgstr "bazénové vybavení"
+
+msgid "table tennis"
+msgstr "stolní tenis"
+
+msgid "tailor"
+msgstr "krejčí"
+
+msgid "tattoo salon"
+msgstr "tetovací salon"
+
+msgid "tennis"
+msgstr "tenis"
+
+msgid "theme park"
+msgstr "zábavní park"
+
+msgid "ticket shop"
+msgstr "prodejna vstupenek"
+
+msgid "tobacco shop"
+msgstr "obchod s tabákovými výrobky"
+
+msgid "toll booth"
+msgstr "mýtná budka"
+
+msgid "townhall"
+msgstr "radnice"
+
+msgid "toys shop"
+msgstr "hračkářství"
+
+msgid "tram stop"
+msgstr "zastávka tramvaje"
+
+msgid "variety store"
+msgstr "obchod s různými druhy zboží"
+
+msgid "vehicle inspection"
+msgstr "kontrola vozidel"
+
+msgid "veterinary"
+msgstr "veterinář"
+
+msgid "videos shop"
+msgstr "videopůjčovna"
+
+msgid "video games shop"
+msgstr "obchod s videohrami"
+
+msgid "water park"
+msgstr "aquapark"
+
+msgid "weapons shop"
+msgstr "obchod se zbraněmi"
+
+msgid "warehouse club"
+msgstr "warehouse club"
+
+msgid "wine shop"
+msgstr "vinotéka"
+
+msgid "winery"
+msgstr "vinařství"
+
+msgid "winter sports resort"
+msgstr "středisko zimních sportů"
+
+msgid "yoga"
+msgstr "jóga"
+
+msgid "zoo"
+msgstr "zoo"
+
+msgid "city"
+msgstr "město"
+
+msgid "country"
+msgstr "země"
+
+msgid "address"
+msgstr "adresa"
+
+msgid "street"
+msgstr "ulice"
+
+msgid "category"
+msgstr "kategorie"
+
+msgid "Your position"
+msgstr "Vaše pozice"
+
+msgid "Back to Qwant.com"
+msgstr "Vyhledávač"
+
+msgid "Qwant Maps uses OpenStreetMap data."
+msgstr "Služba Qwant Maps používá data z projektu OpenStreetMap."
+
+msgid "In partnership with"
+msgstr "V partnerství s"
+
+msgid "View"
+msgstr "Zobrazit"
+
+msgid "Edit"
+msgstr "Upravit"
+
+msgid "opening hours"
+msgstr "otevírací doba"
+
+msgid "Open"
+msgstr "Otevřeno"
+
+msgid "Closed"
+msgstr "Zavřeno"
+
+msgid "Open 24/7"
+msgstr "Otevřeno 24/7"
+
+msgid "reopening at {nextTransitionTime}"
+msgstr "znovu otevírá v {nextTransitionTime}"
+
+msgid "until {nextTransitionTime}"
+msgstr "do {nextTransitionTime}"
+
+msgid "Close to"
+msgstr "Poblíž"
+
+msgid "Geographic coordinates"
+msgstr "Zeměpisné souřadnice"
+
+msgid "on PagesJaunes"
+msgstr "na PagesJaunes"
+
+#, javascript-format
+msgid "%d review"
+msgid_plural "%d reviews"
+msgstr[0] "%d recenze"
+msgstr[1] "%d recenze"
+msgstr[2] "%d recenzí"
+
+msgid "Qwant Maps Home"
+msgstr "Domovská stránka Qwant Maps"
+
+msgid "Search on Qwant Maps"
+msgstr "Hledat ve Qwant Maps"
+
+msgid "Search"
+msgstr "Hledat"
+
+msgid "Menu"
+msgstr "Menu"
+
+msgid "Products"
+msgstr "Produkty"
+
+msgid "Directions"
+msgstr "Trasa"
+
+msgid "Close"
+msgstr "Zavřít"
+
+msgid "Copied!"
+msgstr "Zkopírováno!"
+
+msgid "Copy link"
+msgstr "Kopírovat odkaz"
+
+msgid "Facebook"
+msgstr "Facebook"
+
+msgid "Twitter"
+msgstr "Twitter"
+
+msgid "<span class=\"historyText\">History</span> is available on Qwant Maps"
+msgstr ""
+"Ve službě Qwant Maps je dostupná <span class=\"historyText\">historie</span>"
+
+msgid ""
+"Convenient and completely private, the history will only be visible to you "
+"on this device 🙈."
+msgstr ""
+"Pohodlné a zcela soukromé, historie bude viditelná pouze pro vás na tomto "
+"zařízení 🙈."
+
+msgid "Read more"
+msgstr "Další informace"
+
+msgid "No thanks"
+msgstr "Ne, děkuji"
+
+msgid "Enable history"
+msgstr "Zapnout historii"
+
+msgid "Well done, the <span class=\"historyText\">history</span> is activated"
+msgstr "Skvěle, <span class=\"historyText\">historie</span>je nyní zapnuta"
+
+msgid ""
+"You can find and <a href=\"history\" target=\"_self\">manage your complete "
+"history</a> at any time in the menu"
+msgstr ""
+"Svou historii můžete <a href=\"history\" target=\"_self\">nalézt a "
+"spravovat</a> kdykoli v menu"
+
+msgid "No worries, history is disabled"
+msgstr "Bez obav, historie je vypnutá"
+
+msgid ""
+"You can change your mind at any time and <a href=\"history\" "
+"target=\"_self\">manage</a> the activation of the history in the menu"
+msgstr ""
+"Kdykoli si to můžete rozmyslet a <a href=\"historie\" "
+"target=\"_self\">spravovat</a> aktivaci historie v menu"
+
+msgid "Recent history"
+msgstr "Nedávná historie"
+
+msgid "Manage history"
+msgstr "Spravovat historii"
+
+msgid "Satisfied with the results?"
+msgstr "Jste s výsledky spokojeni?"
+
+msgid "Your history is activated. It is only visible to you on this device."
+msgstr "Vaše historie je aktivována. Je viditelná pouze na tomto zařízení."
+
+msgid "Learn more"
+msgstr "Zjistit více"
+
+msgid "nearby"
+msgstr "poblíž"
+
+msgid "Delete"
+msgstr "Odstranit"
+
+msgid "Thank you for helping us to improve your experience."
+msgstr "Děkujeme, že nám pomáháte zlepšovat vaše zkušenosti."
+
+msgid "Yes"
+msgstr "Ano"
+
+msgid "No"
+msgstr "Ne"
+
+msgid ""
+"Always respecting your privacy.<br>As stated in {privacyPolicyLink}our "
+"privacy policy{closeTag}, we don't store your information because we don't "
+"want to know your whereabouts."
+msgstr ""
+"Vždy respektujeme vaše soukromí.<br>Jak je uvedeno v {privacyPolicyLink}"
+"našich zásadách ochrany osobních údajů{closeTag}, vaše údaje neukládáme, "
+"protože nepotřebujeme vědět, kde se nacházíte."
+
+msgid ""
+"We look at your location to show you where you are, and that's it!<br />(See "
+"our {privacyPolicyLink}privacy policy{closeTag})"
+msgstr ""
+"Zjistíme vaši polohu, abychom vám ukázali, kde se nacházíte. To je vše!<br /"
+">(Viz naše {privacyPolicyLink}zásady ochrany osobních údajů{closeTag})"
+
+msgid "At Qwant, your whereabouts are part of your privacy"
+msgstr "Ve společnosti Qwant je vaše poloha součástí vašeho soukromí"
+
+msgid "Continue"
+msgstr "Pokračovat"
+
+msgid "Enable your geolocation for better directions"
+msgstr "Pro lepší trasu povolte zjišťování lokace"
+
+msgid "Ok, I've got it"
+msgstr "Jasně, chápu"
+
+msgid "Houston,<br/> we have a (geolocation) problem&nbsp;🛰️"
+msgstr "Houstone,<br/> máme problém (s polohou)&nbsp;🛰️"
+
+msgid ""
+"Allow Qwant Maps to access your position so we can better help you find your "
+"way…"
+msgstr ""
+"Umožněte službě Qwant Maps přístup k vaší poloze, abychom vám mohli lépe "
+"pomoci najít cestu..."
+
+msgid "How to access the geolocation services?"
+msgstr "Jak získám přístup ke geolokačním službám?"
+
+msgid ""
+"We can't access your position.<br/> Please check that your geolocation "
+"services are enabled."
+msgstr ""
+"Nemáme přístup k vaší poloze.<br/> Zkontrolujte, že máte povolené zjišťování "
+"polohy."
+
+msgid "Disable Qwant Maps history"
+msgstr "Zakázat historii ve službě Qwant Maps"
+
+msgid "With this action, all your search history will be lost."
+msgstr "Touto akcí ztratíte veškerou historii vyhledávání"
+
+msgid "Cancel"
+msgstr "Zrušit"
+
+msgid "Disable my history"
+msgstr "Zakázat mou historii"
+
+msgid "Clear all my Qwant Maps history"
+msgstr "Vymazat všechnu mou historii ve službě Qwant Maps"
+
+msgid "Clear my history"
+msgstr "Vymazat mou historii"
+
+msgid "Go back"
+msgstr "Zpět"
+
+msgid "New"
+msgstr "Nový"
+
+msgid "Sorry, we could not find this place&nbsp;🏝️"
+msgstr "Omlouváme se, takové místo jsme nenašli&nbsp;🏝️"
+
+msgid ""
+"Please try to correct your query or rewrite it with more details about the "
+"location (city, country, …)"
+msgstr ""
+"Zkuste upravit svůj dotaz nebo jej přepsat s více informacemi o lokaci "
+"(město, země, …)"
+
+msgid "Add a missing place on the map"
+msgstr "Přidat chybějící místo do mapy"
+
+msgid "Try a new search query"
+msgstr "Zkuste zadat nový vyhledávací dotaz"
+
+msgid "Results in partnership with PagesJaunes"
+msgstr "Výsledky ve spolupráci s PagesJaunes"
+
+msgid "Results in partnership with TripAdvisor"
+msgstr "Výsledky ve spolupráci s TripAdvisor"
+
+msgid "Unfold to show the results"
+msgstr "Rozbalte pro zobrazení výsledků"
+
+msgid "Um, you got a little too high 🚀"
+msgstr "Jejda, jste příliš vysoko 🚀"
+
+msgid "Zoom in or move around the map to view results."
+msgstr "Pro zobrazení výsledků přibližte nebo pohněte s mapou."
+
+msgid "Search around my position"
+msgstr "Hledat v mém okolí"
+
+msgid "Hmm, looks like a no-man's land 🏜️"
+msgstr "Hmm, tady vůbec nic není 🏜️"
+
+msgid "We found no place matching your query in this area."
+msgstr "V této oblasti jsme nenašli žádné místo odpovídající vašemu dotazu."
+
+msgid "Get some height"
+msgstr "Zkuste oddálit mapu"
+
+msgid "Enter a starting point"
+msgstr "Zadejte start"
+
+msgid "Enter an end point"
+msgstr "Zadejte cíl"
+
+msgid "Invert start and end"
+msgstr "Prohodit start a cíl"
+
+msgid "step by step"
+msgstr "krok za krokem"
+
+msgid "calculate an itinerary"
+msgstr "vypočítat trasu"
+
+msgid "Share itinerary"
+msgstr "Sdílet trasu"
+
+msgid "Towards {direction}"
+msgstr "Směrem k {direction}"
+
+msgid "Ouch, we've lost the north&nbsp;🧭"
+msgstr "Sakra, ztratili jsme sever&nbsp;🧭"
+
+msgid "The service is temporarily unavailable, please try again later."
+msgstr "Služba je dočasně nedostupná, zkuste to znovu později."
+
+msgid "We couldn't find any itinerary, we are really sorry."
+msgstr "Omlouváme se, ale nenašli jsme žádnou trasu."
+
+msgid "Powered by Navitia"
+msgstr "Poháněno službou Navitia"
+
+msgid "Via"
+msgstr "Přes"
+
+msgid "Fastest route"
+msgstr "Nejrychlejší trasa"
+
+msgid "Walk on {walkDistance}"
+msgstr "Jděte {walkDistance}"
+
+msgid "See less"
+msgstr "Zobrazit méně"
+
+msgid "Steps"
+msgstr "Kroky"
+
+msgid "You have no favorite places. <br>You can add one by clicking on a place"
+msgstr "Nemáte žádná oblíbená místa. <br>Můžete je přidat kliknutím na místo"
+
+msgid "Share"
+msgstr "Sdílet"
+
+msgid "Favorite places"
+msgstr "Oblíbená místa"
+
+msgid "My favorites"
+msgstr "Mé oblíbené"
+
+msgid "My history"
+msgstr "Moje historie"
+
+msgid "Your history is enabled. It is only visible to you on this device."
+msgstr "Vaše historie je zapnuta. Uvidíte ji pouze vy na tomto zařízení."
+
+msgid ""
+"Your history is disabled. If you enable it, it will only be visible to you "
+"on this device."
+msgstr ""
+"Vaše historie je vypnuta. Pokud ji povolíte, uvidíte ji pouze vy na tomto "
+"zařízení."
+
+msgid "Disable"
+msgstr "Vypnout"
+
+msgid "Enable"
+msgstr "Zapnout"
+
+msgid "Delete my history"
+msgstr "Smazat mou historii"
+
+msgid "Today"
+msgstr "Dnes"
+
+msgid "Last week"
+msgstr "Poslední týden"
+
+msgid "Last month"
+msgstr "Poslední měsíc"
+
+msgid "Last 6 months"
+msgstr "Posledních 6 měsíců"
+
+msgid "Last year"
+msgstr "Poslední rok"
+
+msgid "More than one year ago"
+msgstr "Před více než rokem"
+
+msgid "As soon as you do a search, you can find it here 👇"
+msgstr "Jakmile se pustíte do hledání, najdete ho zde 👇"
+
+msgid "Terms of service Qwant&nbsp;Maps"
+msgstr "Podmínky služby Qwant&nbsp;Maps"
+
+msgid "How to contribute"
+msgstr "Jak přispět"
+
+msgid "Report a bug"
+msgstr "Nahlásit chybu"
+
+msgid "Make a booking"
+msgstr "Vytvořit rezervaci"
+
+msgid "Make an appointment"
+msgstr "Domluvit si schůzku"
+
+msgid "Request a quote"
+msgstr "Požádat o nabídku"
+
+msgid "Call"
+msgstr "Zavolat"
+
+msgid "Favorites"
+msgstr "Oblíbené"
+
+msgid "Read more on Wikipedia"
+msgstr "Více informací na Wikipedii"
+
+msgid "Read more on PagesJaunes"
+msgstr "Více informací na PagesJaunes"
+
+msgid "Information"
+msgstr "Informace"
+
+msgid "Show the number"
+msgstr "Zobrazit číslo"
+
+msgid "phone"
+msgstr "mobil"
+
+msgid "website"
+msgstr "web"
+
+msgid "contact"
+msgstr "kontakt"
+
+msgid "Glass"
+msgstr "Sklo"
+
+msgid "Recyclable"
+msgstr "Recyklovatelné"
+
+msgid "Unknown"
+msgstr "Neznámé"
+
+msgid "Updated {datetime}"
+msgstr "Aktualizováno {datetime}"
+
+msgid "Social networks"
+msgstr "Sociální sítě"
+
+msgid "Display all results"
+msgstr "Zobrazit všechny výsledky"
+
+msgid "Search around this place"
+msgstr "Prohledat okolí místa"
+
+msgid "Wheelchair accessible"
+msgstr "Bezbariérový přístup"
+
+msgid "Partially wheelchair accessible"
+msgstr "Částečně bezbariérový přístup"
+
+msgid "Not wheelchair accessible"
+msgstr "Není bezbariérové"
+
+msgid "Wheelchair accessible toilets"
+msgstr "Bezbariérové toalety"
+
+msgid "Partial wheelchair accessible toilets"
+msgstr "Částečně bezbariérové toalety"
+
+msgid "No wheelchair accessible toilets"
+msgstr "Žádné bezbariérové toalety"
+
+msgid "Click & collect"
+msgstr "Klikni a vyzvedni"
+
+msgid "Delivery"
+msgstr "Doručení"
+
+msgid "Take away"
+msgstr "S sebou"
+
+msgid "Photos"
+msgstr "Fotky"
+
+msgid "Internet access"
+msgstr "Přístup k internetu"
+
+msgid "WiFi"
+msgstr "Wi-Fi"
+
+#, javascript-format
+msgid "%d room"
+msgid_plural "%d rooms"
+msgstr[0] "%d místnost"
+msgstr[1] "%d místnosti"
+msgstr[2] "%d místností"
+
+#, javascript-format
+msgid "%d adult"
+msgid_plural "%d adults"
+msgstr[0] "%d dospělý"
+msgstr[1] "%d dospělí"
+msgstr[2] "%d dospělých"
+
+#, javascript-format
+msgid "%d child"
+msgid_plural "%d children"
+msgstr[0] "%d dítě"
+msgstr[1] "%d děti"
+msgstr[2] "%d dětí"
+
+msgid "Make a reservation"
+msgstr "Vytvořit rezervaci"
+
+msgid "Check in"
+msgstr "Přihlášení"
+
+msgid "Check out"
+msgstr "Odhlášení"
+
+msgid "Ok"
+msgstr "OK"
+
+msgid "Guests"
+msgstr "Hosté"
+
+msgid "Check availability"
+msgstr "Zkontrolovat dostupnost"
+
+msgid "Rooms"
+msgstr "Pokoje"
+
+msgid "Adults"
+msgstr "Dospělí"
+
+msgid "Children"
+msgstr "Děti"
+
+msgid "18 years old and more"
+msgstr "18 a více let"
+
+msgid "Between 0 and 17 years old"
+msgstr "0 až 17 let"
+
+#, javascript-format
+msgid "Age of child %d"
+msgstr "Věk dítěte %d"
+
+msgid "Night"
+msgid_plural "Nights"
+msgstr[0] "Noc"
+msgstr[1] "Noci"
+msgstr[2] "Nocí"
+
+#, javascript-format
+msgid "%d star"
+msgid_plural "%d stars"
+msgstr[0] "%d hvězdička"
+msgstr[1] "%d hvězdičky"
+msgstr[2] "%d hvězdiček"
+
+msgid "Starred"
+msgstr "S hvězdičkou"
+
+#, javascript-format
+msgid "{subclass} with %d star"
+msgid_plural "{subclass} with %d stars"
+msgstr[0] "{subclass} s %d hvězdičkou"
+msgstr[1] "{subclass} s %d hvězdičkami"
+msgstr[2] "{subclass} s %d hvězdičkami"
+
+msgid "Starred {subclass}"
+msgstr "K místu {subclass} přidána hvězdička"
+
+msgid "See more nearby services"
+msgstr "Další služby v okolí"
+
+msgid "Reduce"
+msgstr "Méně"
+
+msgid "Unfold to see quick actions"
+msgstr "Rozbalte pro zobrazení rychlých akcí"
+
+msgid "by car"
+msgstr "autem"
+
+msgid "transit"
+msgstr "hromadná doprava"
+
+msgid "on foot"
+msgstr "pěšky"
+
+msgid "by bike"
+msgstr "na kole"
+
+msgid "Services nearby"
+msgstr "Služby v okolí"
+
+msgid "My location"
+msgstr "Moje poloha"
+
+msgid "stops"
+msgstr "zastávky"
+
+msgid "water place"
+msgstr "jezero"
+
+msgid "vacuum cleaner"
+msgstr "vysavač"
+
+msgid "dojo"
+msgstr "dódžó"
+
+msgid "Details"
+msgstr "Podrobnosti"
+
+msgid "Eco-responsible places"
+msgstr "Alternativy šetrné k životnímu prostředí"
+
+msgid "alimentation"
+msgstr "stravování"
+
+msgid "repair cafe"
+msgstr "opravárenská kavárna"
+
+msgid "Eco-responsible restaurants"
+msgstr "Restaurace šetrné k životnímu prostředí"
+
+msgid "Ecotable source see more"
+msgstr "Zjistit více"
+
+msgid "Ecotable source see more link"
+msgstr "Zjistit více"
+
+msgid "Appears in"
+msgstr "Objevilo se v"
+
+msgid "Circuit court"
+msgstr "Místní jídlo"
+
+msgid "Vente en vrac"
+msgstr "Hromadný obchod"
+
+msgid "healthcare laboratory"
+msgstr "zdravotnická laboratoř"
+
+msgid "shop funeral directors"
+msgstr "obchod s pohřebními službami"
+
+msgid "landuse military"
+msgstr "vojenský prostor"
+
+msgid "insurance"
+msgstr "pojištění"
+
+msgid "lawyer"
+msgstr "právník"
+
+msgid "korean restaurant"
+msgstr "korejská restaurace"
+
+msgid "electrician"
+msgstr "elektrikář"
+
+msgid "PagesJaunes"
+msgstr "PagesJaunes"
+
+msgid "Read more on ecotables"
+msgstr "Další informace v Ecotable"
+
+msgid "ecotables"
+msgstr "Ecotable"
+
+msgid "organic_store"
+msgstr "Obchod s bioprodukty"
+
+msgid "second_hand"
+msgstr "Z druhé ruky"
+
+msgid "zero_waste"
+msgstr "Bez odpadu"
+
+msgid "ecotable"
+msgstr "Ecotable"
+
+msgid "Ecotable opening hour source"
+msgstr "Otevírací dobu poskytuje PagesJaunes"
+
+msgid "Ecotable source details"
+msgstr ""
+"Ecotable je francouzská ekoznačka, která určuje a propaguje restaurace s "
+"ekologickými postupy."
+
+msgid "Ecotable source poi see more"
+msgstr "Zjistit více"
+
+msgid "Ecotable source poi details"
+msgstr ""
+"Francouzská ekoznačka Ecotable se zaměřuje na identifikaci a propagaci "
+"restaurací, které používají ekologické postupy"
+
+msgid "Ecotable from rating"
+msgstr "na Ecotable"
+
+msgid "Ecotable rating 1"
+msgstr ""
+"Tento podnik se angažuje v oblasti udržitelnosti, ale přesto ještě musí "
+"přizpůsobit svůj provoz."
+
+msgid "Ecotable rating 2"
+msgstr ""
+"Tento podnik již zahájil svou udržitelnou transformaci s prvními "
+"hmatatelnými výsledky."
+
+msgid "Ecotable rating 3"
+msgstr "Tento podnik vykazuje nejlepší postupy udržitelnosti."
+
+msgid "Organic store source details"
+msgstr ""
+"Biopotraviny jsou nejen zdraví prospěšné, ale také šetrnější k životnímu "
+"prostředí a půdě."
+
+msgid "Organic store source see more"
+msgstr "Zjistit více"
+
+msgid "Organic store source see more link"
+msgstr "https://www.un.org/en/actnow/food"
+
+msgid "Organic store source poi see more"
+msgstr "Zjistit více"
+
+msgid "Organic store source poi details"
+msgstr ""
+"Biopotraviny jsou nejen zdraví prospěšné, ale také šetrnější k životnímu "
+"prostředí a půdě."
+
+msgid "Second hand source details"
+msgstr ""
+"Poskytnutí druhého života předmětům snižuje dopad jejich výroby na životní "
+"prostředí."
+
+msgid "Second hand source see more"
+msgstr "Zjistit více"
+
+msgid "Second hand source see more link"
+msgstr "https://www.un.org/en/actnow/ten-actions#recycle"
+
+msgid "Second hand source poi see more"
+msgstr "Zjistit více"
+
+msgid "Second hand source poi details"
+msgstr ""
+"Poskytnutí druhého života předmětům snižuje dopad jejich výroby na životní "
+"prostředí."
+
+msgid "Zero waste source details"
+msgstr "Prodej bez obalu omezuje plýtvání a odpad z obalů."
+
+msgid "Zero waste source see more"
+msgstr "Zjistit více"
+
+msgid "Zero waste source see more link"
+msgstr ""
+"https://zerowasteeurope.eu/library/packaging-free-shops-in-europe-an-initial-"
+"report/"
+
+msgid "Zero waste source poi see more"
+msgstr "Zjistit více"
+
+msgid "Zero waste source poi details"
+msgstr "Prodej bez obalu omezuje plýtvání a odpad z obalů."
