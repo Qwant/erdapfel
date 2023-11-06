@@ -1040,7 +1040,7 @@ msgid "In partnership with"
 msgstr "V partnerství s"
 
 msgid "View"
-msgstr "Zobrazit"
+msgstr "Prohlédnout"
 
 msgid "Edit"
 msgstr "Upravit"
@@ -1058,7 +1058,7 @@ msgid "Open 24/7"
 msgstr "Otevřeno 24/7"
 
 msgid "reopening at {nextTransitionTime}"
-msgstr "znovu otevírá v {nextTransitionTime}"
+msgstr "otevírá v {nextTransitionTime}"
 
 msgid "until {nextTransitionTime}"
 msgstr "do {nextTransitionTime}"
