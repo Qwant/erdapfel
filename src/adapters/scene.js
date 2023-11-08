@@ -120,6 +120,7 @@ Scene.prototype.initMapBox = function ({ locationHash, bbox }) {
   window.map = this;
 
   const interactiveLayers = [
+    'poi-level-0',
     'poi-level-1',
     'poi-level-2',
     'poi-level-3',
