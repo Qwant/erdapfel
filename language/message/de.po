@@ -1844,3 +1844,6 @@ msgstr "Mehr erfahren"
 
 msgid "Zero waste source poi details"
 msgstr "Eine Verkaufsart, die Abfall und Verpackungsabfall begrenzt."
+
+msgid "cookies_management"
+msgstr "Verwaltung von Cookies"
