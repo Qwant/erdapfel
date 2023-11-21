@@ -74,7 +74,7 @@ const AppMenu = ({ close, openProducts }) => {
           target="_self"
           icon={<IconCookie width={16} fill="var(--green-500)" />}
         >
-          {_('cookies_management', 'menu')} hello world
+          {_('cookies_management', 'menu')}
         </MenuItem>
       )}
 

@@ -4,7 +4,6 @@ on:
   push:
     branches:
       - 'master'
-      - 'QMAPS-telemetry'
     tags:
       - 'v*'
 
