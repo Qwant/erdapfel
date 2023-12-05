@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect } from 'react';
+import React, { useCallback, useContext, useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 import Telemetry from 'src/libs/telemetry';
 import ActionButtons from './ActionButtons';
@@ -11,6 +11,7 @@ import { Divider } from 'src/components/ui';
 import { useConfig, useI18n, useFavorites, useDevice } from 'src/hooks';
 import { Reservation } from './blocks/Reservation/Reservation';
 import { findBlock, isFromEcotables } from 'src/libs/pois';
+import { PanelHeaderHeightContext } from 'src/libs/panelHeaderContext';
 
 const PoiPanelContent = ({ poi }) => {
   const { _ } = useI18n();
@@ -21,6 +22,15 @@ const PoiPanelContent = ({ poi }) => {
   const { isMobile } = useDevice();
   const ecoResponsibleBlock = poi ? findBlock(poi.blocks, 'ecoresponsible') : null;
   const isEcoResponsibleBlock = isEcoResponsibleActive && !!ecoResponsibleBlock;
+  const { height: panelHeaderHeight, setHeight: setPanelHeaderHeight } =
+    useContext(PanelHeaderHeightContext);
+  const ref = useRef();
+
+  useEffect(() => {
+    if (panelHeaderHeight !== ref?.current?.clientHeight) {
+      setPanelHeaderHeight(ref?.current?.clientHeight);
+    }
+  }, [panelHeaderHeight, setPanelHeaderHeight]);
 
   useEffect(() => {
     fire('set_direction_shortcut_callback', openDirection);
@@ -74,22 +84,24 @@ const PoiPanelContent = ({ poi }) => {
 
   return (
     <div className="poi_panel__content">
-      <PoiItem
-        poi={poi}
-        className="u-mb-l poi-panel-poiItem"
-        withAlternativeName
-        withOpeningHours
-        onClick={center}
-      />
-      <div className="u-mb-l">
-        <ActionButtons
+      <div ref={ref}>
+        <PoiItem
           poi={poi}
-          isDirectionActive={isDirectionActive}
-          openDirection={openDirection}
-          onClickPhoneNumber={onClickPhoneNumber}
-          isPoiInFavorite={isInFavorites(poi)}
-          toggleStorePoi={toggleStorePoi}
+          className="u-mb-l poi-panel-poiItem"
+          withAlternativeName
+          withOpeningHours
+          onClick={center}
         />
+        <div className="u-pb-l">
+          <ActionButtons
+            poi={poi}
+            isDirectionActive={isDirectionActive}
+            openDirection={openDirection}
+            onClickPhoneNumber={onClickPhoneNumber}
+            isPoiInFavorite={isInFavorites(poi)}
+            toggleStorePoi={toggleStorePoi}
+          />
+        </div>
       </div>
       <div className="poi_panel__fullContent">
         {hasReservation && <Reservation url={poi.meta.source_url} mobile={isMobile} />}

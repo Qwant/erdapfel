@@ -1,6 +1,6 @@
 .direction-panel {
   &::before {
-    content: "";
+    content: '';
     display: block;
     position: absolute;
     border: 1px solid var(--grey-900-alpha16);
@@ -29,12 +29,12 @@
       height: 24px;
     }
   }
-
+  /* 
   @media (min-width: 641px) {
     &.panel {
       max-height: calc(100vh - 92px);
     }
-  }
+  } */
 
   @media (max-width: 640px) {
     @include card_shadow();
@@ -44,7 +44,7 @@
     top: 0;
     left: 0;
     z-index: 1;
-  
+
     .direction-autocomplete_suggestions {
       position: fixed;
       top: calc(50px + calc(var(--spacing-m) * 2));
@@ -71,7 +71,8 @@
       display: none;
     }
 
-    &.maximized, &.panel--holding {
+    &.maximized,
+    &.panel--holding {
       .itemList > div:not(:first-child) {
         display: block;
         margin-top: 12px;
@@ -79,4 +80,3 @@
     }
   }
 }
-

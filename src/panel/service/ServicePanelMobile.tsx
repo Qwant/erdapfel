@@ -1,5 +1,5 @@
 /* global _ */
-import React, { Fragment } from 'react';
+import React, { Fragment, useContext, useEffect } from 'react';
 import Panel from 'src/components/ui/Panel';
 import CategoryList from 'src/components/CategoryList';
 import MainActionButton from 'src/components/ui/MainActionButton';
@@ -7,10 +7,18 @@ import VehicleIcon from 'src/panel/direction/VehicleIcon';
 import { useConfig } from 'src/hooks';
 import Telemetry from 'src/libs/telemetry';
 import { QmapsConfig } from 'appTypes/config';
+import { PanelHeaderHeightContext } from 'src/libs/panelHeaderContext';
 
 const ServicePanelMobile = () => {
   const directionConf = useConfig('direction') as unknown as QmapsConfig['direction'];
+  const { height: panelHeaderHeight, setHeight: setPanelHeaderHeight } =
+    useContext(PanelHeaderHeightContext);
 
+  useEffect(() => {
+    if (panelHeaderHeight !== 231) {
+      setPanelHeaderHeight(231);
+    }
+  }, [panelHeaderHeight, setPanelHeaderHeight]);
   return (
     <Panel
       resizable

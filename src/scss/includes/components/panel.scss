@@ -1,89 +1,16 @@
-$bottom-margin: 40px;
-
 .panel {
-  @include long_shadow();
-  @include panel_radius();
+  width: 100vw;
   background-color: white;
-  width: $panel_width;
-  display: flex;
-  flex-direction: column;
 
-  &-drawer {
-    min-height: 20px;
-    height: 20px;
-    pointer-events: all;
-    -moz-user-select: none;
-    -webkit-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-    cursor: -webkit-grab;
-    cursor: grab;
-    text-align: center;
-    width: 50%;
-    align-self: center;
+  .panel-content {
+    width: 100%;
+    overflow: auto;
   }
 
-  &-close {
-    position: absolute;
-    right: 9px;
-    top: 9px;
-  }
-}
-
-@media (min-width: 641px) {
-  .panel {
-    max-height: calc(100vh - (92px + #{$bottom-margin})); // 92px is panel.getBoundingClientRect().top
-
-    &-header {
-      z-index: 0;
-      flex-shrink: 0;
-    }
-
-    &-content {
-      overflow-y: auto;
-    }
-  }
-
-}
-
-@media (max-width: 640px) {
-  .panel {
-    width: 100vw;
-    position: fixed;
-    border-radius: 12px 12px 0 0;
-    bottom: 0;
-    overflow: unset;
-
-    &:not(.panel--holding) {
-      transition: transform 0.2s ease-in-out;
-
-      &.maximized {
-        box-shadow: none;
-      }
-    }
-
-    &.maximized {
-      border-radius: 0;
-      .panel-content {
-        overflow: auto;
-      }
-    }
-
-    .panel-drawer {
-      flex-shrink: 0;
-    }
-
-    .panel-handle {
-      width: 40px;
-      height: 5px;
-      margin: 4px auto;
-      border-radius: 2.5px;
-      background-color: #e0e1e6;
-    }
-
-    .minimizedTitle {
-      height: 30px;
-      flex-shrink: 0;
-    }
+  hr {
+    width: 100%;
+    height: 1px;
+    margin-bottom: 20px;
+    background-color: #e0e1e6;
   }
 }
