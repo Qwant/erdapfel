@@ -21,6 +21,7 @@ declare module '@qwant/qwant-ponents' {
   export const Box: React.FunctionComponent<{
     className?: string;
     ml?: string;
+    mb?: string;
   }>;
   export const Flex: React.FunctionComponent<{
     className?: string;

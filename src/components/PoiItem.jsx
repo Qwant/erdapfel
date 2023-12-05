@@ -35,7 +35,7 @@ const PoiItem = React.memo(
       <div className={cx('poiItem', className)} {...rest}>
         <Flex column fullWidth>
           {ecoResponsibleCategory && !inList && (
-            <Flex mb="s">
+            <Flex mb="l">
               <EcoResponsiblePanelTopMention
                 category={ecoResponsibleCategory}
                 isPoiDetails

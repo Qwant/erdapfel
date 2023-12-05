@@ -34,6 +34,7 @@
     width: 80px;
     height: 80px;
     top: 0;
+    right: 0;
   }
 
   .ecoResponsible-leaf-inner {
@@ -45,6 +46,11 @@
     align-items: center;
     justify-content: center;
     transform: translateY(-5px) translateX(5px);
+
+    @media (max-width: 640px) {
+      width: 20px;
+      height: 20px;
+    }
   }
 
   .ecoResponsible-icon {
@@ -52,6 +58,11 @@
     width: 16px;
     height: 16px;
     fill: var(--green-500);
+
+    @media (max-width: 640px) {
+      width: 12px;
+      height: 12px;
+    }
   }
 
   &--details {

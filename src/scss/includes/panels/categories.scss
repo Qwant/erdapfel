@@ -8,6 +8,12 @@
     display: flex;
     flex-wrap: wrap;
   }
+
+  .feedback,
+  .feedback-success {
+    position: sticky;
+    bottom: 0;
+  }
 }
 
 .category__panel__items {
@@ -30,7 +36,8 @@
 @media (min-width: 641px) {
   .category__panel {
     &.panel--pj,
-    &.panel--ta {
+    &.panel--ta,
+    &.panel--et {
       .panel-content {
         overflow: hidden;
         display: flex;
@@ -61,7 +68,8 @@
     }
 
     &.panel--pj,
-    &.panel--ta {
+    &.panel--ta,
+    &.panel--et {
       padding: 0 0 36px;
     }
 
@@ -69,12 +77,6 @@
       .feedback {
         display: none;
       }
-    }
-
-    .feedback,
-    .feedback-success {
-      position: sticky;
-      bottom: 0;
     }
   }
 
