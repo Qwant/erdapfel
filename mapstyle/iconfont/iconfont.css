@@ -1,8 +1,8 @@
 @font-face {
 	font-family: "iconfont";
-	src: url("iconfont.eot?6131f8362658b216b69fe2851a04f003?#iefix") format("embedded-opentype"),
-url("iconfont.woff2?6131f8362658b216b69fe2851a04f003") format("woff2"),
-url("iconfont.woff?6131f8362658b216b69fe2851a04f003") format("woff");
+	src: url("iconfont.eot?2ab6a9f4427032799f51bdc40eac5d70?#iefix") format("embedded-opentype"),
+url("iconfont.woff2?2ab6a9f4427032799f51bdc40eac5d70") format("woff2"),
+url("iconfont.woff?2ab6a9f4427032799f51bdc40eac5d70") format("woff");
 }
 
 .icon {
@@ -103,315 +103,312 @@ url("iconfont.woff?6131f8362658b216b69fe2851a04f003") format("woff");
 .icon-cemetery:before {
 	content: "\f11d";
 }
-.icon-charging-station:before {
+.icon-cinema:before {
 	content: "\f11e";
 }
-.icon-cinema:before {
+.icon-circle:before {
 	content: "\f11f";
 }
-.icon-circle:before {
+.icon-clothing-store:before {
 	content: "\f120";
 }
-.icon-clothing-store:before {
+.icon-college:before {
 	content: "\f121";
 }
-.icon-college:before {
+.icon-commercial:before {
 	content: "\f122";
 }
-.icon-commercial:before {
+.icon-confectionery:before {
 	content: "\f123";
 }
-.icon-confectionery:before {
+.icon-convenience-store:before {
 	content: "\f124";
 }
-.icon-convenience-store:before {
+.icon-dam:before {
 	content: "\f125";
 }
-.icon-dam:before {
+.icon-deli:before {
 	content: "\f126";
 }
-.icon-deli:before {
+.icon-dentist:before {
 	content: "\f127";
 }
-.icon-dentist:before {
+.icon-doctor:before {
 	content: "\f128";
 }
-.icon-doctor:before {
+.icon-dog-park:before {
 	content: "\f129";
 }
-.icon-dog-park:before {
+.icon-electronics:before {
 	content: "\f12a";
 }
-.icon-electronics:before {
+.icon-embassy:before {
 	content: "\f12b";
 }
-.icon-embassy:before {
+.icon-entrance:before {
 	content: "\f12c";
 }
-.icon-entrance:before {
+.icon-escape:before {
 	content: "\f12d";
 }
-.icon-escape:before {
+.icon-event:before {
 	content: "\f12e";
 }
-.icon-event:before {
+.icon-fast-food:before {
 	content: "\f12f";
 }
-.icon-fast-food:before {
+.icon-ferry:before {
 	content: "\f130";
 }
-.icon-ferry:before {
+.icon-fire-station:before {
 	content: "\f131";
 }
-.icon-fire-station:before {
+.icon-fitness:before {
 	content: "\f132";
 }
-.icon-fitness:before {
+.icon-florist:before {
 	content: "\f133";
 }
-.icon-florist:before {
+.icon-food-court:before {
 	content: "\f134";
 }
-.icon-food-court:before {
+.icon-fuel:before {
 	content: "\f135";
 }
-.icon-fuel:before {
+.icon-furniture:before {
 	content: "\f136";
 }
-.icon-furniture:before {
+.icon-gaming:before {
 	content: "\f137";
 }
-.icon-gaming:before {
+.icon-garden:before {
 	content: "\f138";
 }
-.icon-garden:before {
+.icon-garden-center:before {
 	content: "\f139";
 }
-.icon-garden-center:before {
+.icon-gift:before {
 	content: "\f13a";
 }
-.icon-gift:before {
+.icon-globe:before {
 	content: "\f13b";
 }
-.icon-globe:before {
+.icon-golf:before {
 	content: "\f13c";
 }
-.icon-golf:before {
+.icon-greengrocer:before {
 	content: "\f13d";
 }
-.icon-greengrocer:before {
+.icon-grocery:before {
 	content: "\f13e";
 }
-.icon-grocery:before {
+.icon-hairdresser:before {
 	content: "\f13f";
 }
-.icon-hairdresser:before {
+.icon-harbor:before {
 	content: "\f140";
 }
-.icon-harbor:before {
+.icon-hardware:before {
 	content: "\f141";
 }
-.icon-hardware:before {
+.icon-home:before {
 	content: "\f142";
 }
-.icon-home:before {
+.icon-horse-riding:before {
 	content: "\f143";
 }
-.icon-horse-riding:before {
+.icon-hospital:before {
 	content: "\f144";
 }
-.icon-hospital:before {
+.icon-ice-cream:before {
 	content: "\f145";
 }
-.icon-ice-cream:before {
+.icon-information:before {
 	content: "\f146";
 }
-.icon-information:before {
+.icon-jewelry-store:before {
 	content: "\f147";
 }
-.icon-jewelry-store:before {
+.icon-laundry:before {
 	content: "\f148";
 }
-.icon-laundry:before {
+.icon-library:before {
 	content: "\f149";
 }
-.icon-library:before {
+.icon-lodging:before {
 	content: "\f14a";
 }
-.icon-lodging:before {
+.icon-marker:before {
 	content: "\f14b";
 }
-.icon-marker:before {
+.icon-marker2:before {
 	content: "\f14c";
 }
-.icon-marker2:before {
+.icon-mobile-phone:before {
 	content: "\f14d";
 }
-.icon-mobile-phone:before {
+.icon-monument:before {
 	content: "\f14e";
 }
-.icon-monument:before {
+.icon-mountain:before {
 	content: "\f14f";
 }
-.icon-mountain:before {
+.icon-museum:before {
 	content: "\f150";
 }
-.icon-museum:before {
+.icon-music:before {
 	content: "\f151";
 }
-.icon-music:before {
+.icon-music-shop:before {
 	content: "\f152";
 }
-.icon-music-shop:before {
+.icon-optician:before {
 	content: "\f153";
 }
-.icon-optician:before {
+.icon-paint:before {
 	content: "\f154";
 }
-.icon-paint:before {
+.icon-park-alt1:before {
 	content: "\f155";
 }
-.icon-park-alt1:before {
+.icon-parking:before {
 	content: "\f156";
 }
-.icon-parking:before {
+.icon-parking-bike:before {
 	content: "\f157";
 }
-.icon-parking-bike:before {
+.icon-pet:before {
 	content: "\f158";
 }
-.icon-pet:before {
+.icon-pharmacy:before {
 	content: "\f159";
 }
-.icon-pharmacy:before {
+.icon-picnic-site:before {
 	content: "\f15a";
 }
-.icon-picnic-site:before {
+.icon-place-of-worship:before {
 	content: "\f15b";
 }
-.icon-place-of-worship:before {
+.icon-playground:before {
 	content: "\f15c";
 }
-.icon-playground:before {
+.icon-police:before {
 	content: "\f15d";
 }
-.icon-police:before {
+.icon-post:before {
 	content: "\f15e";
 }
-.icon-post:before {
+.icon-post-box:before {
 	content: "\f15f";
 }
-.icon-post-box:before {
+.icon-prison:before {
 	content: "\f160";
 }
-.icon-prison:before {
+.icon-rail:before {
 	content: "\f161";
 }
-.icon-rail:before {
+.icon-rail-light:before {
 	content: "\f162";
 }
-.icon-rail-light:before {
+.icon-rail-metro:before {
 	content: "\f163";
 }
-.icon-rail-metro:before {
+.icon-ranger-station:before {
 	content: "\f164";
 }
-.icon-ranger-station:before {
+.icon-recycling:before {
 	content: "\f165";
 }
-.icon-recycling:before {
+.icon-religious-buddhism:before {
 	content: "\f166";
 }
-.icon-religious-buddhism:before {
+.icon-religious-christian:before {
 	content: "\f167";
 }
-.icon-religious-christian:before {
+.icon-religious-jewish:before {
 	content: "\f168";
 }
-.icon-religious-jewish:before {
+.icon-religious-muslim:before {
 	content: "\f169";
 }
-.icon-religious-muslim:before {
+.icon-residential-community:before {
 	content: "\f16a";
 }
-.icon-residential-community:before {
+.icon-restaurant:before {
 	content: "\f16b";
 }
-.icon-restaurant:before {
+.icon-school:before {
 	content: "\f16c";
 }
-.icon-school:before {
+.icon-scooter:before {
 	content: "\f16d";
 }
-.icon-scooter:before {
+.icon-seafood:before {
 	content: "\f16e";
 }
-.icon-seafood:before {
+.icon-second-hand:before {
 	content: "\f16f";
 }
-.icon-second-hand:before {
+.icon-service:before {
 	content: "\f170";
 }
-.icon-service:before {
+.icon-shelter:before {
 	content: "\f171";
 }
-.icon-shelter:before {
+.icon-shop:before {
 	content: "\f172";
 }
-.icon-shop:before {
+.icon-skiing:before {
 	content: "\f173";
 }
-.icon-skiing:before {
+.icon-slaughterhouse:before {
 	content: "\f174";
 }
-.icon-slaughterhouse:before {
+.icon-soccer:before {
 	content: "\f175";
 }
-.icon-soccer:before {
+.icon-sportevent:before {
 	content: "\f176";
 }
-.icon-sportevent:before {
+.icon-stadium:before {
 	content: "\f177";
 }
-.icon-stadium:before {
+.icon-stationery:before {
 	content: "\f178";
 }
-.icon-stationery:before {
+.icon-swimming:before {
 	content: "\f179";
 }
-.icon-swimming:before {
+.icon-teahouse:before {
 	content: "\f17a";
 }
-.icon-teahouse:before {
+.icon-telephone:before {
 	content: "\f17b";
 }
-.icon-telephone:before {
+.icon-theatre:before {
 	content: "\f17c";
 }
-.icon-theatre:before {
+.icon-toilet:before {
 	content: "\f17d";
 }
-.icon-toilet:before {
+.icon-town:before {
 	content: "\f17e";
 }
-.icon-town:before {
+.icon-town-hall:before {
 	content: "\f17f";
 }
-.icon-town-hall:before {
+.icon-veterinary:before {
 	content: "\f180";
 }
-.icon-veterinary:before {
+.icon-viewpoint:before {
 	content: "\f181";
 }
-.icon-viewpoint:before {
+.icon-waste-basket:before {
 	content: "\f182";
 }
-.icon-waste-basket:before {
+.icon-watch:before {
 	content: "\f183";
 }
-.icon-watch:before {
-	content: "\f184";
-}
 .icon-zoo:before {
-	content: "\f185";
+	content: "\f184";
 }
