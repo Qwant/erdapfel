@@ -214,7 +214,7 @@ const TopBar = ({ value, setUserInputValue, inputRef, onSuggestToggle, backButto
               <a
                 className={cx('u-mr-xs', 'menu__button', 'menu__button--icon')}
                 target="_self"
-                href={window.location.origin}
+                href="https://www.qwant.com/"
               >
                 <QwantLogoBlue />
                 {_('Back to Qwant.com')}
