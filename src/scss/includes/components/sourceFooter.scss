@@ -19,6 +19,9 @@
   .sourceFooter {
     position: fixed;
     text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     bottom: 0;
     min-height: 36px;
     font-size: 14px;

@@ -4,6 +4,7 @@ import cx from 'classnames';
 import Telemetry from 'src/libs/telemetry';
 import { Flex, IconInformation, StarRating, Text, Tooltip } from '@qwant/qwant-ponents';
 import { isFromEcotables, isFromTripAdvisor, isFromPagesJaunes } from 'src/libs/pois';
+import { useDevice } from 'src/hooks';
 
 function logGradesClick(poi, inList) {
   const grades = poi.blocksByType.grades;
@@ -95,48 +96,51 @@ const ReviewScore = ({ poi, inList }) => {
   );
 };
 
-const EcotablesRating = ({ score, isVertical }) => (
-  <Flex className={cx(isVertical && 'ecotables__rating--vertical')}>
-    <Flex alignCenter>
-      {new Array(score).fill().map((_, index) => (
-        <img
-          key={index}
-          src="./statics/images/ecotable-rating-filled.svg"
-          alt="Ecotable"
-          width={12}
-          height={12}
-          loading="lazy"
-        />
-      ))}
-      {new Array(3 - score).fill().map((_, index) => (
-        <img
-          key={index}
-          src="./statics/images/ecotable-rating-empty.svg"
-          alt="Ecotable"
-          width={12}
-          height={12}
-          loading="lazy"
-        />
-      ))}
-    </Flex>
-    <Flex ml={isVertical ? undefined : 'xxs'}>
-      <Flex mb={isVertical ? 'xxs' : undefined}>
-        <Text typo="body-2" color="secondary">
-          {isVertical ? _('ecotable') : _('Ecotable from rating')}
-        </Text>
+const EcotablesRating = ({ score, isVertical }) => {
+  const { isMobile } = useDevice();
+  return (
+    <Flex className={cx(isVertical && 'ecotables__rating--vertical')}>
+      <Flex alignCenter>
+        {new Array(score).fill().map((_, index) => (
+          <img
+            key={index}
+            src="./statics/images/ecotable-rating-filled.svg"
+            alt="Ecotable"
+            width={12}
+            height={12}
+            loading="lazy"
+          />
+        ))}
+        {new Array(3 - score).fill().map((_, index) => (
+          <img
+            key={index}
+            src="./statics/images/ecotable-rating-empty.svg"
+            alt="Ecotable"
+            width={12}
+            height={12}
+            loading="lazy"
+          />
+        ))}
       </Flex>
-      <Tooltip
-        className="reviewScore__ecotable--tooltip"
-        position="bottom"
-        content={_(`Ecotable rating ${score}`)}
-      >
-        <Flex className="reviewScore__ecotable--tooltip-element" alignCenter ml="xxs">
-          <IconInformation size={12} />
+      <Flex ml={isVertical ? undefined : 'xxs'}>
+        <Flex mb={isVertical ? 'xxs' : undefined}>
+          <Text typo={isMobile ? 'body-2' : 'caption-1'} color="secondary">
+            {isVertical ? _('ecotable') : _('Ecotable from rating')}
+          </Text>
         </Flex>
-      </Tooltip>
+        <Tooltip
+          className="reviewScore__ecotable--tooltip"
+          position="bottom"
+          content={_(`Ecotable rating ${score}`)}
+        >
+          <Flex className="reviewScore__ecotable--tooltip-element" alignCenter ml="xxs">
+            <IconInformation size={12} />
+          </Flex>
+        </Tooltip>
+      </Flex>
     </Flex>
-  </Flex>
-);
+  );
+};
 
 const PagesJaunesRating = ({ isVertical, grade, count, showSuffix }) => (
   <Flex className={cx(isVertical && 'pagesjaunes__rating--vertical')}>

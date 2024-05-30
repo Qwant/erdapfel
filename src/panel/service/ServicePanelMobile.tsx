@@ -7,6 +7,8 @@ import VehicleIcon from 'src/panel/direction/VehicleIcon';
 import { useConfig } from 'src/hooks';
 import Telemetry from 'src/libs/telemetry';
 import { QmapsConfig } from 'appTypes/config';
+import ServicePanelEcoresponsibleMention from './ServicePanelEcoresponsibleMention';
+import { Box } from '@qwant/qwant-ponents';
 
 const ServicePanelMobile = () => {
   const directionConf = useConfig('direction') as unknown as QmapsConfig['direction'];
@@ -67,6 +69,9 @@ const ServicePanelMobile = () => {
         {_('Services nearby', 'service panel')}
       </h3>
       <CategoryList className="service_panel__categories" limit={16} isLeafAnimated />
+      <Box ml="m" mb="s">
+        <ServicePanelEcoresponsibleMention />
+      </Box>
     </Panel>
   );
 };
