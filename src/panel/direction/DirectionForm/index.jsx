@@ -19,6 +19,9 @@ const DirectionForm = ({
   isInitializing,
   originInputText,
   destinationInputText,
+  onStartNow,
+  onStartAt,
+  onArriveBy,
 }) => {
   const { _ } = useI18n();
   const { isMobile } = useDevice();
@@ -93,6 +96,27 @@ const DirectionForm = ({
           <IconArrowUpDown fill="currentColor" />
         </Button>
       </form>
+      {activeVehicle === 'publicTransport' && (
+        <div className="delayed">
+          <p>
+            Start now <button onClick={onStartNow}>GO</button>
+          </p>
+          <p>
+            Start at <input type="datetime-local" id="start_at" />{' '}
+            <button onClick={() => onStartAt(+new Date(document.querySelector('#start_at').value))}>
+              OK
+            </button>
+          </p>
+          <p>
+            Arrive by <input type="datetime-local" id="arrive_by" />{' '}
+            <button
+              onClick={() => onArriveBy(+new Date(document.querySelector('#arrive_by').value))}
+            >
+              OK
+            </button>
+          </p>
+        </div>
+      )}
     </div>
   );
 };

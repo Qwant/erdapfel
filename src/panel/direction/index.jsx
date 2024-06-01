@@ -65,6 +65,8 @@ class DirectionPanel extends React.Component {
       isInitializing: true,
       originInputText: '',
       destinationInputText: '',
+      startAt: null,
+      arriveBy: null,
     };
 
     this.restorePoints(props);
@@ -180,7 +182,7 @@ class DirectionPanel extends React.Component {
   }
 
   computeRoutes = async () => {
-    const { origin, destination, vehicle } = this.state;
+    const { origin, destination, vehicle, startAt, arriveBy } = this.state;
     if (origin && destination) {
       this.setState({
         isDirty: false,
@@ -191,7 +193,13 @@ class DirectionPanel extends React.Component {
       const currentQueryId = ++this.lastQueryId;
       fire('set_origin', origin);
       fire('set_destination', destination);
-      const directionResponse = await DirectionApi.search(origin, destination, vehicle);
+      const directionResponse = await DirectionApi.search(
+        origin,
+        destination,
+        vehicle,
+        startAt,
+        arriveBy
+      );
       // A more recent query was done in the meantime, ignore this result silently
       if (currentQueryId !== this.lastQueryId) {
         return;
@@ -330,6 +338,21 @@ class DirectionPanel extends React.Component {
     }
   };
 
+  startNow = () => {
+    this.setState({ startAt: null, arriveBy: null }, this.update);
+    this.computeRoutes();
+  };
+
+  startAt = datetime => {
+    this.setState({ startAt: datetime, arriveBy: null }, this.update);
+    this.computeRoutes();
+  };
+
+  arriveBy = datetime => {
+    this.setState({ startAt: null, arriveBy: datetime }, this.update);
+    this.computeRoutes();
+  };
+
   render() {
     const {
       origin,
@@ -361,6 +384,9 @@ class DirectionPanel extends React.Component {
         onSelectVehicle={this.onSelectVehicle}
         activeVehicle={vehicle}
         isInitializing={isInitializing}
+        onStartNow={this.startNow}
+        onStartAt={this.startAt}
+        onArriveBy={this.arriveBy}
       />
     );
 
