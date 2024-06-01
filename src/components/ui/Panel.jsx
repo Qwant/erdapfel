@@ -1,10 +1,11 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useRef, useState } from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import { fire, listen, unListen } from 'src/libs/customEvents';
 import { DeviceContext } from 'src/libs/device';
 import { PanelContext } from 'src/libs/panelContext';
 import { CloseButton, FloatingItems } from 'src/components/ui';
+import { PanelHeaderHeightContext } from 'src/libs/panelHeaderContext';
 
 const getEventClientY = event =>
   event.changedTouches ? event.changedTouches[0].clientY : event.clientY;
@@ -39,6 +40,7 @@ function getTargetSize(previousSize, startHeight, endHeight, maxSize) {
   return size;
 }
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 class Panel extends React.Component {
   static propTypes = {
     children: PropTypes.oneOfType([PropTypes.func, PropTypes.node]).isRequired,
@@ -283,9 +285,9 @@ class Panel extends React.Component {
       this.getHeight()
     );
 
-    if (newSize !== this.props.size) {
+    /*     if (newSize !== this.props.size) {
       this.props.setSize(newSize);
-    }
+    } */
 
     this.setState({
       holding: false,
@@ -296,7 +298,7 @@ class Panel extends React.Component {
   handleHeaderClick() {
     const size = this.props.size === 'default' ? 'minimized' : 'default';
     const translateY = this.getTranslateY(size);
-    this.props.setSize(size);
+    //this.props.setSize(size);
     this.setState({ translateY });
   }
 
@@ -376,6 +378,58 @@ class Panel extends React.Component {
   }
 }
 
+const PanelNew = ({ children, size, headerHeight, setSize }) => {
+  const panelMinimizedHeight =
+    window.innerHeight - TOP_BAR_HEIGHT - headerHeight - FIT_CONTENT_PADDING;
+  const ref = useRef(null);
+  const [translateY, setTranslateY] = useState(panelMinimizedHeight);
+
+  useEffect(() => {
+    setTranslateY(panelMinimizedHeight);
+  }, [panelMinimizedHeight]);
+
+  const handleHeaderClick = () => {
+    const newSize = size === 'default' ? 'minimized' : 'default';
+    const newTranslateY = translateY === 0 ? panelMinimizedHeight : 0;
+    setSize(newSize);
+    setTranslateY(newTranslateY);
+  };
+
+  return (
+    <div
+      className="panel"
+      style={{
+        height: window.innerHeight - 80,
+        transform: `translate3d(0px, ${translateY}px, 0px)`,
+      }}
+      ref={ref}
+    >
+      <div
+        style={{
+          width: '100%',
+          height: 20,
+          paddingTop: 4,
+          display: 'flex',
+          justifyContent: 'center',
+        }}
+        onClick={handleHeaderClick}
+      >
+        <div
+          style={{
+            width: '36px',
+            height: '4px',
+            backgroundColor: '#d9d9e0',
+            borderRadius: '3px',
+          }}
+        />
+      </div>
+      <div className="panel-content" style={{ height: window.innerHeight - TOP_BAR_HEIGHT - 20 }}>
+        {children}
+      </div>
+    </div>
+  );
+};
+
 // Use React.memo to skip re-renders
 // and keep the same inner DOM during the panel manual resizes
 const PanelContent = React.memo(({ children, size, isMobile }) =>
@@ -385,7 +439,13 @@ PanelContent.displayName = 'PanelContent';
 
 const PanelWrapper = props => {
   const { size, setSize } = useContext(PanelContext);
-  return <Panel {...props} size={size} setSize={setSize} />;
+  const { height } = useContext(PanelHeaderHeightContext);
+
+  return (
+    <PanelNew size={size} setSize={setSize} headerHeight={height}>
+      {props.children}
+    </PanelNew>
+  );
 };
 
 export default PanelWrapper;
